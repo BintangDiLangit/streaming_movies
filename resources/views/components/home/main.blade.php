@@ -19,18 +19,6 @@
 
                         <div class="film-poster">
 
-
-                            <div class="tick ltr">
-
-
-
-                                <div class="tick-item tick-sub"><i class="fas fa-closed-captioning mr-1"></i>12</div>
-
-
-
-
-                            </div>
-
                             <img data-src="https://ani-watch.s3.us-west-1.amazonaws.com/anime_posters/vlad-love-15602_poster.jpg"
                                 class="film-poster-img lazyloaded" alt="Vlad Love"
                                 src="https://ani-watch.s3.us-west-1.amazonaws.com/anime_posters/vlad-love-15602_poster.jpg">
@@ -57,20 +45,6 @@
                     <div class="flw-item">
 
                         <div class="film-poster">
-
-
-                            <div class="tick ltr">
-
-
-
-                                <div class="tick-item tick-sub"><i class="fas fa-closed-captioning mr-1"></i>1</div>
-                                <div class="tick-item tick-dub"><i class="fas fa-microphone mr-1"></i>1</div>
-
-                                <div class="tick-item tick-eps"></div>
-
-
-
-                            </div>
 
                             <img data-src="https://ani-watch.s3.us-west-1.amazonaws.com/anime_posters/violet-evergarden-extra-episode-201_poster.jpg"
                                 class="film-poster-img lazyloaded" alt="Violet Evergarden Extra Episode"
@@ -102,20 +76,6 @@
                     <div class="flw-item">
 
                         <div class="film-poster">
-
-
-                            <div class="tick ltr">
-
-
-
-                                <div class="tick-item tick-sub"><i class="fas fa-closed-captioning mr-1"></i>1</div>
-                                <div class="tick-item tick-dub"><i class="fas fa-microphone mr-1"></i>1</div>
-
-                                <div class="tick-item tick-eps"></div>
-
-
-
-                            </div>
 
                             <img data-src="https://ani-watch.s3.us-west-1.amazonaws.com/anime_posters/captain-harlock-arcadia-of-my-youth-1543_poster.jpg"
                                 class="film-poster-img lazyloaded" alt="Captain Harlock: Arcadia of my Youth"
@@ -149,20 +109,6 @@
 
                         <div class="film-poster">
 
-
-                            <div class="tick ltr">
-
-
-
-                                <div class="tick-item tick-sub"><i class="fas fa-closed-captioning mr-1"></i>1</div>
-                                <div class="tick-item tick-dub"><i class="fas fa-microphone mr-1"></i>1</div>
-
-                                <div class="tick-item tick-eps"></div>
-
-
-
-                            </div>
-
                             <img data-src="https://ani-watch.s3.us-west-1.amazonaws.com/anime_posters/voltage-fighter-gowcaizer-ova-17896_poster.jpg"
                                 class="film-poster-img lazyloaded" alt="Voltage Fighter Gowcaizer: OVA"
                                 src="https://ani-watch.s3.us-west-1.amazonaws.com/anime_posters/voltage-fighter-gowcaizer-ova-17896_poster.jpg">
@@ -195,18 +141,6 @@
 
                         <div class="film-poster">
 
-
-                            <div class="tick ltr">
-
-
-
-                                <div class="tick-item tick-sub"><i class="fas fa-closed-captioning mr-1"></i>40</div>
-
-
-
-
-                            </div>
-
                             <img data-src="https://ani-watch.s3.us-west-1.amazonaws.com/anime_posters/the-rose-of-versailles-200_poster.jpg"
                                 class="film-poster-img lazyloaded" alt="The Rose of Versailles"
                                 src="https://ani-watch.s3.us-west-1.amazonaws.com/anime_posters/the-rose-of-versailles-200_poster.jpg">
@@ -235,20 +169,6 @@
                     <div class="flw-item">
 
                         <div class="film-poster">
-
-
-                            <div class="tick ltr">
-
-
-
-                                <div class="tick-item tick-sub"><i class="fas fa-closed-captioning mr-1"></i>12</div>
-                                <div class="tick-item tick-dub"><i class="fas fa-microphone mr-1"></i>12</div>
-
-                                <div class="tick-item tick-eps">12</div>
-
-
-
-                            </div>
 
                             <img data-src="https://ani-watch.s3.us-west-1.amazonaws.com/anime_posters/the-case-study-of-vanitas-part-2-17932_poster.png"
                                 class="film-poster-img lazyloaded" alt="The Case Study of Vanitas Part 2"
@@ -282,18 +202,6 @@
 
                         <div class="film-poster">
 
-
-                            <div class="tick ltr">
-
-
-
-                                <div class="tick-item tick-sub"><i class="fas fa-closed-captioning mr-1"></i>13</div>
-
-
-
-
-                            </div>
-
                             <img data-src="https://ani-watch.s3.us-west-1.amazonaws.com/anime_posters/wz-9233_poster.jpg"
                                 class="film-poster-img lazyloaded" alt="W"
                                 src="https://ani-watch.s3.us-west-1.amazonaws.com/anime_posters/wz-9233_poster.jpg">
@@ -319,18 +227,6 @@
                     <div class="flw-item">
 
                         <div class="film-poster">
-
-
-                            <div class="tick ltr">
-
-
-
-                                <div class="tick-item tick-sub"><i class="fas fa-closed-captioning mr-1"></i>12</div>
-
-
-
-
-                            </div>
 
                             <img data-src="https://ani-watch.s3.us-west-1.amazonaws.com/anime_posters/virtual-san-looking-9480_poster.jpg"
                                 class="film-poster-img lazyloaded" alt="Virtual-san Looking"
@@ -360,20 +256,6 @@
 
                         <div class="film-poster">
 
-
-                            <div class="tick ltr">
-
-
-
-                                <div class="tick-item tick-sub"><i class="fas fa-closed-captioning mr-1"></i>1</div>
-                                <div class="tick-item tick-dub"><i class="fas fa-microphone mr-1"></i>1</div>
-
-                                <div class="tick-item tick-eps"></div>
-
-
-
-                            </div>
-
                             <img data-src="https://ani-watch.s3.us-west-1.amazonaws.com/anime_posters/violence-jack-slumking-9945_poster.jpg"
                                 class="film-poster-img lazyloaded" alt="Violence Jack: Slumking"
                                 src="https://ani-watch.s3.us-west-1.amazonaws.com/anime_posters/violence-jack-slumking-9945_poster.jpg">
@@ -402,18 +284,6 @@
                     <div class="flw-item">
 
                         <div class="film-poster">
-
-
-                            <div class="tick ltr">
-
-
-
-                                <div class="tick-item tick-sub"><i class="fas fa-closed-captioning mr-1"></i>3</div>
-
-
-
-
-                            </div>
 
                             <img data-src="https://ani-watch.s3.us-west-1.amazonaws.com/anime_posters/vivid-strike-specials-4876_poster.jpg"
                                 class="film-poster-img lazyloaded" alt="ViVid Strike! Specials"
@@ -480,21 +350,6 @@
 
                         <div class="film-poster">
 
-
-                            <div class="tick ltr">
-
-
-
-
-                                <div class="tick-item tick-sub"><i class="fas fa-closed-captioning mr-1"></i>2</div>
-                                <div class="tick-item tick-dub"><i class="fas fa-microphone mr-1"></i>2</div>
-
-                                <div class="tick-item tick-eps">25</div>
-
-
-
-                            </div>
-
                             <img data-src="https://cdn.noitatnemucod.net/thumbnail/300x400/100/0fc66f9879a3a4a15408c325e1677e17.jpg"
                                 class="film-poster-img lazyloaded" alt="Shangri-La Frontier Season 2"
                                 src="https://cdn.noitatnemucod.net/thumbnail/300x400/100/0fc66f9879a3a4a15408c325e1677e17.jpg">
@@ -526,21 +381,6 @@
 
                         <div class="film-poster">
 
-
-                            <div class="tick ltr">
-
-
-
-
-                                <div class="tick-item tick-sub"><i class="fas fa-closed-captioning mr-1"></i>1</div>
-                                <div class="tick-item tick-dub"><i class="fas fa-microphone mr-1"></i>1</div>
-
-                                <div class="tick-item tick-eps"></div>
-
-
-
-                            </div>
-
                             <img data-src="https://cdn.noitatnemucod.net/thumbnail/300x400/100/675d1f46ca58fa783049fd9d83bb1918.jpg"
                                 class="film-poster-img lazyloaded" alt="Pop Pop City"
                                 src="https://cdn.noitatnemucod.net/thumbnail/300x400/100/675d1f46ca58fa783049fd9d83bb1918.jpg">
@@ -567,21 +407,6 @@
                     <div class="flw-item">
 
                         <div class="film-poster">
-
-
-                            <div class="tick ltr">
-
-
-
-
-                                <div class="tick-item tick-sub"><i class="fas fa-closed-captioning mr-1"></i>3</div>
-                                <div class="tick-item tick-dub"><i class="fas fa-microphone mr-1"></i>3</div>
-
-                                <div class="tick-item tick-eps">12</div>
-
-
-
-                            </div>
 
                             <img data-src="https://cdn.noitatnemucod.net/thumbnail/300x400/100/e756a671806e36e1276a5c4788ad3a9f.jpg"
                                 class="film-poster-img lazyloaded"
@@ -618,21 +443,6 @@
 
                         <div class="film-poster">
 
-
-                            <div class="tick ltr">
-
-
-
-
-                                <div class="tick-item tick-sub"><i class="fas fa-closed-captioning mr-1"></i>1</div>
-                                <div class="tick-item tick-dub"><i class="fas fa-microphone mr-1"></i>1</div>
-
-                                <div class="tick-item tick-eps"></div>
-
-
-
-                            </div>
-
                             <img data-src="https://cdn.noitatnemucod.net/thumbnail/300x400/100/08367d0a68b3952cb14a1e72b84aaae3.jpg"
                                 class="film-poster-img lazyloaded" alt="One Piece Fan Letter"
                                 src="https://cdn.noitatnemucod.net/thumbnail/300x400/100/08367d0a68b3952cb14a1e72b84aaae3.jpg">
@@ -661,21 +471,6 @@
                     <div class="flw-item">
 
                         <div class="film-poster">
-
-
-                            <div class="tick ltr">
-
-
-
-
-                                <div class="tick-item tick-sub"><i class="fas fa-closed-captioning mr-1"></i>3</div>
-                                <div class="tick-item tick-dub"><i class="fas fa-microphone mr-1"></i>3</div>
-
-                                <div class="tick-item tick-eps"></div>
-
-
-
-                            </div>
 
                             <img data-src="https://cdn.noitatnemucod.net/thumbnail/300x400/100/9cbdef8e800f8a96f6574475a2972d98.jpg"
                                 class="film-poster-img lazyloaded" alt="Neko ni Tensei shita Ojisan"
@@ -707,21 +502,6 @@
                     <div class="flw-item">
 
                         <div class="film-poster">
-
-
-                            <div class="tick ltr">
-
-
-
-
-                                <div class="tick-item tick-sub"><i class="fas fa-closed-captioning mr-1"></i>2</div>
-                                <div class="tick-item tick-dub"><i class="fas fa-microphone mr-1"></i>2</div>
-
-                                <div class="tick-item tick-eps"></div>
-
-
-
-                            </div>
 
                             <img data-src="https://cdn.noitatnemucod.net/thumbnail/300x400/100/9b25eb117ecc8cf228d361540c7cfd67.jpg"
                                 class="film-poster-img lazyloaded"
@@ -758,21 +538,6 @@
 
                         <div class="film-poster">
 
-
-                            <div class="tick ltr">
-
-
-
-
-                                <div class="tick-item tick-sub"><i class="fas fa-closed-captioning mr-1"></i>2</div>
-                                <div class="tick-item tick-dub"><i class="fas fa-microphone mr-1"></i>2</div>
-
-                                <div class="tick-item tick-eps">12</div>
-
-
-
-                            </div>
-
                             <img data-src="https://cdn.noitatnemucod.net/thumbnail/300x400/100/8bbe3d0785392e3ca5b179e0d281e434.jpg"
                                 class="film-poster-img lazyloaded" alt="Demon Lord 2099"
                                 src="https://cdn.noitatnemucod.net/thumbnail/300x400/100/8bbe3d0785392e3ca5b179e0d281e434.jpg">
@@ -799,21 +564,6 @@
                     <div class="flw-item">
 
                         <div class="film-poster">
-
-
-                            <div class="tick ltr">
-
-
-
-
-                                <div class="tick-item tick-sub"><i class="fas fa-closed-captioning mr-1"></i>6</div>
-                                <div class="tick-item tick-dub"><i class="fas fa-microphone mr-1"></i>6</div>
-
-                                <div class="tick-item tick-eps">6</div>
-
-
-
-                            </div>
 
                             <img data-src="https://cdn.noitatnemucod.net/thumbnail/300x400/100/e9c7b065fcab7e02f14e6995b9bd836d.jpg"
                                 class="film-poster-img lazyloaded" alt="Mobile Suit Gundam: Requiem for Vengeance"
@@ -847,21 +597,6 @@
 
                         <div class="film-poster">
 
-
-                            <div class="tick ltr">
-
-
-
-
-                                <div class="tick-item tick-sub"><i class="fas fa-closed-captioning mr-1"></i>1</div>
-                                <div class="tick-item tick-dub"><i class="fas fa-microphone mr-1"></i>1</div>
-
-                                <div class="tick-item tick-eps"></div>
-
-
-
-                            </div>
-
                             <img data-src="https://cdn.noitatnemucod.net/thumbnail/300x400/100/8bb1a6f47288f688cfbe1135bec8878b.jpg"
                                 class="film-poster-img lazyloaded" alt="Duel Masters LOST: Crystal of Reminiscence"
                                 src="https://cdn.noitatnemucod.net/thumbnail/300x400/100/8bb1a6f47288f688cfbe1135bec8878b.jpg">
@@ -893,21 +628,6 @@
                     <div class="flw-item">
 
                         <div class="film-poster">
-
-
-                            <div class="tick ltr">
-
-
-
-
-                                <div class="tick-item tick-sub"><i class="fas fa-closed-captioning mr-1"></i>1</div>
-                                <div class="tick-item tick-dub"><i class="fas fa-microphone mr-1"></i>1</div>
-
-                                <div class="tick-item tick-eps"></div>
-
-
-
-                            </div>
 
                             <img data-src="https://cdn.noitatnemucod.net/thumbnail/300x400/100/af88c5ee982c019b3458d430b9810c43.jpg"
                                 class="film-poster-img lazyloaded" alt="Dorami-chan: Wow, The Kid Gang of Bandits"
@@ -944,95 +664,12 @@
         </div>
     </section>
     <div class="clearfix"></div>
-
-
-    <div id="schedule-block"></div>
-
-
-    <section class="block_area block_area_home">
-        <div class="block_area-header">
-            <div class="float-left bah-heading mr-4">
-                <h2 class="cat-heading">Top Upcoming</h2>
-            </div>
-            <div class="float-right viewmore"><a class="btn" href="/top-upcoming">View more<i
-                        class="fas fa-angle-right ml-2"></i></a></div>
-            <div class="clearfix"></div>
-        </div>
-        <div class="tab-content">
-            <div class="block_area-content block_area-list film_list film_list-grid">
-                <div class="film_list-wrap">
-
-
-                    <div class="flw-item">
-
-                        <div class="film-poster">
-
-
-                            <div class="tick ltr">
-
-
-
-                                <div class="tick-item tick-sub"><i class="fas fa-closed-captioning mr-1"></i>1</div>
-
-
-
-
-
-                            </div>
-
-                            <img data-src="https://ani-watch.s3.us-west-1.amazonaws.com/anime_posters/sayonara-watashi-no-cramer-movie-first-touch-15535_poster.jpg"
-                                class="film-poster-img lazyloaded" alt="Sayonara Watashi no Cramer Movie: First Touch"
-                                src="https://ani-watch.s3.us-west-1.amazonaws.com/anime_posters/sayonara-watashi-no-cramer-movie-first-touch-15535_poster.jpg">
-                            <a id-text="Gintama Season 4"
-                                href="https://hianime.io/detail/sayonara-watashi-no-cramer-movie-first-touch-15535"
-                                class="openPopup film-poster-ahref item-qtip"
-                                data-id="sayonara-watashi-no-cramer-movie-first-touch-15535"
-                                oldtitle="Sayonara Watashi no Cramer Movie: First Touch" title=""><i
-                                    class="fas fa-play"></i></a>
-                        </div>
-                        <div class="film-detail">
-                            <h3 class="film-name"><a id-text="Gintama Season 4"
-                                    href="https://hianime.io/detail/sayonara-watashi-no-cramer-movie-first-touch-15535"
-                                    title="Sayonara Watashi no Cramer Movie: First Touch"
-                                    class="openPopup dynamic-name" data-jname="映画 さよなら私のクラマー ファーストタッチ">Sayonara
-                                    Watashi no Cramer
-                                    Movie: First Touch</a>
-                            </h3>
-                            <div class="fd-infor">
-
-                                <span class="fdi-item">Movie</span>
-                                <span class="dot"></span>
-                                <span class="fdi-item fdi-duration">?m</span>
-
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-
-
-
-
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </section>
 </div>
 <div id="main-sidebar">
     <section class="block_area block_area_sidebar block_area-realtime">
         <div class="block_area-header">
             <div class="float-left bah-heading mr-2">
                 <h2 class="cat-heading">Top 10</h2>
-            </div>
-            <div class="float-right bah-tab-min">
-                <ul class="nav nav-pills nav-fill nav-tabs anw-tabs">
-                    <li class="nav-item"><a data-toggle="tab" href="#top-viewed-day"
-                            class="nav-link active">Today</a>
-                    </li>
-                    <li class="nav-item"><a data-toggle="tab" href="#top-viewed-week" class="nav-link">Week</a></li>
-                    <li class="nav-item"><a data-toggle="tab" href="#top-viewed-month" class="nav-link">Month</a>
-                    </li>
-                </ul>
             </div>
             <div class="clearfix"></div>
         </div>
@@ -1059,22 +696,6 @@
                                                 data-jname="Frieren: Beyond Journey's End">Frieren:
                                                 Beyond Journey's End</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>28
-                                                </div>
-                                                <div class="tick-item tick-dub"><i
-                                                        class="fas fa-microphone mr-1"></i>28</div>
-
-                                                <div class="tick-item tick-eps">28</div>
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1091,22 +712,6 @@
                                             <a href="https://hianime.io/detail/my-star-18330" title="My Star"
                                                 class="dynamic-name" data-jname="My Star">My Star</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>11
-                                                </div>
-                                                <div class="tick-item tick-dub"><i
-                                                        class="fas fa-microphone mr-1"></i>11</div>
-
-                                                <div class="tick-item tick-eps">11</div>
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1126,22 +731,6 @@
                                                 data-jname="Fullmetal Alchemist: Brotherhood">Fullmetal
                                                 Alchemist: Brotherhood</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>64
-                                                </div>
-                                                <div class="tick-item tick-dub"><i
-                                                        class="fas fa-microphone mr-1"></i>64</div>
-
-                                                <div class="tick-item tick-eps">64</div>
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1162,22 +751,6 @@
                                                 data-jname="Attack on Titan: The Final Season Part 3">Attack
                                                 on Titan: The Final Season Part 3</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>2
-                                                </div>
-                                                <div class="tick-item tick-dub"><i
-                                                        class="fas fa-microphone mr-1"></i>2</div>
-
-                                                <div class="tick-item tick-eps">2</div>
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1195,19 +768,6 @@
                                                 title="Gintama Season 4" class="dynamic-name"
                                                 data-jname="Gintama Season 4">Gintama Season 4</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>51
-                                                </div>
-
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1224,22 +784,6 @@
                                             <a href="https://hianime.io/detail/steinsgate-3" title="Steins;Gate"
                                                 class="dynamic-name" data-jname="Steins;Gate">Steins;Gate</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>24
-                                                </div>
-                                                <div class="tick-item tick-dub"><i
-                                                        class="fas fa-microphone mr-1"></i>24</div>
-
-                                                <div class="tick-item tick-eps">24</div>
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1257,22 +801,6 @@
                                                 title="Spy x Family" class="dynamic-name"
                                                 data-jname="Spy x Family">Spy x Family</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>12
-                                                </div>
-                                                <div class="tick-item tick-dub"><i
-                                                        class="fas fa-microphone mr-1"></i>12</div>
-
-                                                <div class="tick-item tick-eps">12</div>
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1290,19 +818,6 @@
                                                 title="Gintama Season 2" class="dynamic-name"
                                                 data-jname="Gintama Season 2">Gintama Season 2</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>51
-                                                </div>
-
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1320,22 +835,6 @@
                                                 title="Hunter x Hunter" class="dynamic-name"
                                                 data-jname="Hunter x Hunter">Hunter x Hunter</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>148
-                                                </div>
-                                                <div class="tick-item tick-dub"><i
-                                                        class="fas fa-microphone mr-1"></i>148</div>
-
-                                                <div class="tick-item tick-eps">148</div>
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1353,19 +852,6 @@
                                                 title="Gintama: Enchousen" class="dynamic-name"
                                                 data-jname="Gintama: Enchousen">Gintama: Enchousen</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>13
-                                                </div>
-
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1388,19 +874,6 @@
                                             <a href="https://hianime.io/detail/vlad-love-15602" title="Vlad Love"
                                                 class="dynamic-name" data-jname="Vlad Love">Vlad Love</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>12
-                                                </div>
-
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1420,22 +893,6 @@
                                                 data-jname="Violet Evergarden Extra Episode">Violet
                                                 Evergarden Extra Episode</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>1
-                                                </div>
-                                                <div class="tick-item tick-dub"><i
-                                                        class="fas fa-microphone mr-1"></i>1</div>
-
-                                                <div class="tick-item tick-eps"></div>
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1456,22 +913,6 @@
                                                 data-jname="Captain Harlock: Arcadia of my Youth">Captain
                                                 Harlock: Arcadia of my Youth</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>1
-                                                </div>
-                                                <div class="tick-item tick-dub"><i
-                                                        class="fas fa-microphone mr-1"></i>1</div>
-
-                                                <div class="tick-item tick-eps"></div>
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1491,22 +932,6 @@
                                                 data-jname="Voltage Fighter Gowcaizer: OVA">Voltage
                                                 Fighter Gowcaizer: OVA</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>1
-                                                </div>
-                                                <div class="tick-item tick-dub"><i
-                                                        class="fas fa-microphone mr-1"></i>1</div>
-
-                                                <div class="tick-item tick-eps"></div>
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1526,19 +951,6 @@
                                                 data-jname="The Rose of Versailles">The Rose of
                                                 Versailles</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>40
-                                                </div>
-
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1559,22 +971,6 @@
                                                 data-jname="The Case Study of Vanitas Part 2">The Case
                                                 Study of Vanitas Part 2</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>12
-                                                </div>
-                                                <div class="tick-item tick-dub"><i
-                                                        class="fas fa-microphone mr-1"></i>12</div>
-
-                                                <div class="tick-item tick-eps">12</div>
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1591,19 +987,6 @@
                                             <a href="https://hianime.io/detail/wz-9233" title="W"
                                                 class="dynamic-name" data-jname="W">W</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>13
-                                                </div>
-
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1623,19 +1006,6 @@
                                                 data-jname="Virtual-san Looking">Virtual-san
                                                 Looking</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>12
-                                                </div>
-
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1655,22 +1025,6 @@
                                                 data-jname="Violence Jack: Slumking">Violence Jack:
                                                 Slumking</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>1
-                                                </div>
-                                                <div class="tick-item tick-dub"><i
-                                                        class="fas fa-microphone mr-1"></i>1</div>
-
-                                                <div class="tick-item tick-eps"></div>
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1690,19 +1044,6 @@
                                                 data-jname="ViVid Strike! Specials">ViVid Strike!
                                                 Specials</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>3
-                                                </div>
-
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1727,20 +1068,6 @@
                                                 data-jname="Shangri-La Frontier Season 2">Shangri-La
                                                 Frontier Season 2</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>2
-                                                </div>
-                                                <div class="tick-item tick-dub"><i
-                                                        class="fas fa-microphone mr-1"></i>2</div>
-
-                                                <div class="tick-item tick-eps">25</div>
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1758,20 +1085,6 @@
                                                 title="Pop Pop City" class="dynamic-name"
                                                 data-jname="Pop Pop City">Pop Pop City</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>1
-                                                </div>
-                                                <div class="tick-item tick-dub"><i
-                                                        class="fas fa-microphone mr-1"></i>1</div>
-
-                                                <div class="tick-item tick-eps"></div>
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1794,20 +1107,6 @@
                                                 Healer Who Was Banished From His Party, Is, in Fact, the
                                                 Strongest</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>3
-                                                </div>
-                                                <div class="tick-item tick-dub"><i
-                                                        class="fas fa-microphone mr-1"></i>3</div>
-
-                                                <div class="tick-item tick-eps">12</div>
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1827,20 +1126,6 @@
                                                 data-jname="One Piece Fan Letter">One Piece Fan
                                                 Letter</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>1
-                                                </div>
-                                                <div class="tick-item tick-dub"><i
-                                                        class="fas fa-microphone mr-1"></i>1</div>
-
-                                                <div class="tick-item tick-eps"></div>
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1860,20 +1145,6 @@
                                                 data-jname="Neko ni Tensei shita Ojisan">Neko ni
                                                 Tensei shita Ojisan</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>3
-                                                </div>
-                                                <div class="tick-item tick-dub"><i
-                                                        class="fas fa-microphone mr-1"></i>3</div>
-
-                                                <div class="tick-item tick-eps"></div>
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1896,20 +1167,6 @@
                                                 Seven Deadly Sins: Four Knights of the Apocalypse Season
                                                 2</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>2
-                                                </div>
-                                                <div class="tick-item tick-dub"><i
-                                                        class="fas fa-microphone mr-1"></i>2</div>
-
-                                                <div class="tick-item tick-eps"></div>
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1927,20 +1184,6 @@
                                                 title="Demon Lord 2099" class="dynamic-name"
                                                 data-jname="Demon Lord 2099">Demon Lord 2099</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>2
-                                                </div>
-                                                <div class="tick-item tick-dub"><i
-                                                        class="fas fa-microphone mr-1"></i>2</div>
-
-                                                <div class="tick-item tick-eps">12</div>
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1962,20 +1205,6 @@
                                                 data-jname="Mobile Suit Gundam: Requiem for Vengeance">Mobile
                                                 Suit Gundam: Requiem for Vengeance</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>6
-                                                </div>
-                                                <div class="tick-item tick-dub"><i
-                                                        class="fas fa-microphone mr-1"></i>6</div>
-
-                                                <div class="tick-item tick-eps">6</div>
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -1997,20 +1226,6 @@
                                                 data-jname="Duel Masters LOST: Crystal of Reminiscence">Duel
                                                 Masters LOST: Crystal of Reminiscence</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>1
-                                                </div>
-                                                <div class="tick-item tick-dub"><i
-                                                        class="fas fa-microphone mr-1"></i>1</div>
-
-                                                <div class="tick-item tick-eps"></div>
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -2032,20 +1247,6 @@
                                                 data-jname="Dorami-chan: Wow, The Kid Gang of Bandits">Dorami-chan:
                                                 Wow, The Kid Gang of Bandits</a>
                                         </h3>
-                                        <div class="fd-infor">
-                                            <div class="tick">
-
-                                                <div class="tick-item tick-sub"><i
-                                                        class="fas fa-closed-captioning mr-1"></i>1
-                                                </div>
-                                                <div class="tick-item tick-dub"><i
-                                                        class="fas fa-microphone mr-1"></i>1</div>
-
-                                                <div class="tick-item tick-eps"></div>
-
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
@@ -2056,66 +1257,6 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <section class="block_area block_area_sidebar block_area-genres">
-        <div class="block_area-header">
-            <div class="float-left bah-heading mr-4">
-                <h2 class="cat-heading">Genres</h2>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-        <div class="block_area-content">
-            <div class="cbox cbox-genres">
-                <ul class="ulclear color-list sb-genre-list sb-genre-less">
-
-
-                    <li><a href="/genre/Action" title="Action">Action</a></li>
-                    <li><a href="/genre/Adventure" title="Adventure">Adventure</a></li>
-                    <li><a href="/genre/Cars" title="Cars">Cars</a></li>
-                    <li><a href="/genre/Comedy" title="Comedy">Comedy</a></li>
-                    <li><a href="/genre/Dementia" title="Dementia">Dementia</a></li>
-                    <li><a href="/genre/Demons" title="Demons">Demons</a></li>
-                    <li><a href="/genre/Drama" title="Drama">Drama</a></li>
-                    <li><a href="/genre/Ecchi" title="Ecchi">Ecchi</a></li>
-                    <li><a href="/genre/Fantasy" title="Fantasy">Fantasy</a></li>
-                    <li><a href="/genre/Game" title="Game">Game</a></li>
-                    <li><a href="/genre/Harem" title="Harem">Harem</a></li>
-                    <li><a href="/genre/Historical" title="Historical">Historical</a></li>
-                    <li><a href="/genre/Horror" title="Horror">Horror</a></li>
-                    <li><a href="/genre/Isekai" title="Isekai">Isekai</a></li>
-                    <li><a href="/genre/Josei" title="Josei">Josei</a></li>
-                    <li><a href="/genre/Kids" title="Kids">Kids</a></li>
-                    <li><a href="/genre/Magic" title="Magic">Magic</a></li>
-                    <li><a href="/genre/Martial Arts" title="Martial Arts">Martial Arts</a></li>
-                    <li><a href="/genre/Mecha" title="Mecha">Mecha</a></li>
-                    <li><a href="/genre/Military" title="Military">Military</a></li>
-                    <li><a href="/genre/Music" title="Music">Music</a></li>
-                    <li><a href="/genre/Mystery" title="Mystery">Mystery</a></li>
-                    <li><a href="/genre/Parody" title="Parody">Parody</a></li>
-                    <li><a href="/genre/Police" title="Police">Police</a></li>
-                    <li><a href="/genre/Psychological" title="Psychological">Psychological</a></li>
-                    <li><a href="/genre/Romance" title="Romance">Romance</a></li>
-                    <li><a href="/genre/Samurai" title="Samurai">Samurai</a></li>
-                    <li><a href="/genre/School" title="School">School</a></li>
-                    <li><a href="/genre/Sci-Fi" title="Sci-Fi">Sci-Fi</a></li>
-                    <li><a href="/genre/Seinen" title="Seinen">Seinen</a></li>
-                    <li><a href="/genre/Shoujo" title="Shoujo">Shoujo</a></li>
-                    <li><a href="/genre/Shoujo Ai" title="Shoujo Ai">Shoujo Ai</a></li>
-                    <li><a href="/genre/Shounen" title="Shounen">Shounen</a></li>
-                    <li><a href="/genre/Shounen Ai" title="Shounen Ai">Shounen Ai</a></li>
-                    <li><a href="/genre/Slice of Life" title="Slice of Life">Slice of Life</a></li>
-                    <li><a href="/genre/Space" title="Space">Space</a></li>
-                    <li><a href="/genre/Sports" title="Sports">Sports</a></li>
-                    <li><a href="/genre/Super Power" title="Super Power">Super Power</a></li>
-                    <li><a href="/genre/Supernatural" title="Supernatural">Supernatural</a></li>
-                    <li><a href="/genre/Thriller" title="Thriller">Thriller</a></li>
-                    <li><a href="/genre/Vampire" title="Vampire">Vampire</a></li>
-
-                </ul>
-                <div class="clearfix"></div>
-                <button class="btn btn-sm btn-block btn-showmore mt-2"></button>
             </div>
         </div>
     </section>

@@ -20,9 +20,9 @@
         <!--Begin: Events-->
 
         <!--/End: Events-->
-        @include('components.home.discussion')
+        {{-- @include('components.home.discussion') --}}
         <!-- Begin: featured -->
-        @include('components.home.featured')
+        {{-- @include('components.home.featured') --}}
         <div id="main-wrapper">
             <div class="container">
                 @include('components.home.main')
@@ -33,6 +33,10 @@
     </div>
     @include('layouts.pre-modal')
     @include('layouts.script')
+
+    @include('components.ads.refresh-page-ads')
+    @include('components.ads/static-ads')
+    @include('components.ads/every-minute-ads')
 </body>
 
 </html>
