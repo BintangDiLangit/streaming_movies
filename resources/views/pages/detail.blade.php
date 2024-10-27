@@ -127,7 +127,7 @@
                 <div class="clearfix"></div>
               </div>
               <div class="input-group mb-3" style="max-width: 500px">
-                <span class="input-group-text" id="basic-addon1" style="max-height: 38px">/az/</span>
+                {{-- <span class="input-group-text" id="basic-addon1" style="max-height: 38px">/az/</span> --}}
                 <input type="text" id="custom-code" class="form-control" placeholder="Make custom url" aria-label="Username" aria-describedby="basic-addon1">
                 <button type="button" id="shorten-button" class="btn btn-primary ml-2" style="max-height: 38px">Shorted</button>
               </div>
@@ -200,7 +200,7 @@
 
             if (data.status) {
                 // Jika berhasil, salin URL ke clipboard
-                const shortUrl = `${window.location.origin}/az/${data.data.code}`; // Sesuaikan format URL yang dihasilkan
+                const shortUrl = `${window.location.origin}/cu/${data.data.code}`; // Sesuaikan format URL yang dihasilkan
                 await navigator.clipboard.writeText(shortUrl);
                 showNotification(`Short URL berhasil dibuat dan disalin ke clipboard: ${shortUrl}`, false); // Tampilkan pesan sukses
             } else {

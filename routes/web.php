@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [DashboardController::class, 'index'])->name('home');
 Route::get('/detail/{slug}', [DashboardController::class, 'show'])->name('detail');
 Route::post('/short-url', [DashboardController::class, 'makeShortUrl'])->name('short-url');
-Route::get('/az/{code}', [DashboardController::class, 'shortUrlIndex'])->name('short-url.index');
+Route::get('/cu/{code}', [DashboardController::class, 'shortUrlIndex'])->name('short-url.index');
 
 Route::prefix('/auth')->name('auth.')->group(function () {
     Route::get('/sign-in', [AuthController::class, 'signInPage'])->name('sign-in.index');
@@ -23,22 +23,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/auth/sign-out', [AuthController::class, 'signOut'])->name('auth.sign-out');
 });
 
-/** User */
 Route::prefix('/admin')->name('admin.')->middleware(['auth', 'roles:admin'])->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('index');
 
+    /** User */
     Route::prefix('/user')->name('user.')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index');
         Route::post('/', [UserController::class, 'store'])->name('store');
         Route::put('/', [UserController::class, 'update'])->name('update');
         Route::delete('/{id}', [UserController::class, 'destroy'])->name('destroy');
     });
-});
 
-/** Film */
-Route::prefix('/admin')->name('admin.')->middleware(['auth', 'roles:admin'])->group(function () {
-    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('index');
-
+    /** Film */
     Route::prefix('/film')->name('film.')->group(function () {
         Route::get('/', [FilmController::class, 'index'])->name('index');
         Route::post('/', [FilmController::class, 'store'])->name('store');

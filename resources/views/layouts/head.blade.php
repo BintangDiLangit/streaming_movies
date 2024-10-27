@@ -1,4 +1,4 @@
-<title>Hianime Free Anime Streaming Homepage</title>
+<title>Candu Movie</title>
 <base url="http://aniwatch.ing/">
 
 <!--Begin: Stylesheet-->
@@ -30,12 +30,12 @@
 <meta name="theme-color" content="#202125">
 <link rel="shortcut icon" href="{{ asset('assets/images/favicon/favicon.png?v=0.1') }}" type="image/x-icon" />
 <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon/apple-touch-icon.png') }}">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon/favicon-32x32.png') }}">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon/favicon-16x16.png') }}">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/candu.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/candu.png">
 <link rel="mask-icon" href="/safari-pinned-tab.svg?v=0.1" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
-<link rel="icon" sizes="192x192" href="{{ asset('assets/images/android-chrome-192x192.png') }}">
-<link rel="icon" sizes="512x512" href="{{ asset('assets/images/android-chrome-512x512.png') }}">
+<link rel="icon" sizes="192x192" href="/assets/images/candu.png">
+<link rel="icon" sizes="512x512" href="/assets/images/candu.png">
 <script src="https://hianime.io/js/jquery.min.js" type="text/javascript"></script>
 <script src="https://hianime.io/js/jquery-ui.min.js"></script>
 <script src="https://cdn.usefathom.com/script.js" data-site="CPNYDIWG" defer></script>
