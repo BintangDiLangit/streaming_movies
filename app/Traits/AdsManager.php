@@ -41,4 +41,10 @@ trait AdsManager
             ]
         ]);
     }
+
+    public function setAllStatus(string $status) {
+        $this->everyRefreshPage($status);
+        $this->everyMinute($status);
+        $this->staticAds($status);
+    }
 }

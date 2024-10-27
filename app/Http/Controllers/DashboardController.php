@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Film;
 use App\Traits\AdsManager;
 use Illuminate\Http\Request;
 
@@ -10,18 +11,24 @@ class DashboardController extends Controller
     use AdsManager;
 
     public function index(Request $request) {
-        $this->everyRefreshPage('on');
-        $this->everyMinute('on');
-        $this->staticAds('on');
+        $this->setAllStatus('off');
 
-        return view('welcome');
+        $datas = Film::query();
+
+        if ($request->has('search') && !empty($request->search)) {
+            $datas->where('title', 'like', '%' . $request->search . '%');
+        }
+
+        $datas = $datas->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
+
+        return view('pages.home', compact('datas'));
     }
 
-    public function show(Request $request){
-        $this->everyRefreshPage('off');
-        $this->everyMinute('off');
-        $this->staticAds('off');
+    public function show(Request $request, $slug){
+        $this->setAllStatus('off');
 
-        return view('pages.detail');
+        $data = Film::where('slug', $slug)->first();
+
+        return view('pages.detail', compact('data'));
     }
 }

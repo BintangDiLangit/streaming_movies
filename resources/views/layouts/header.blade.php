@@ -7,9 +7,9 @@
         </a>
         <div id="search">
             <div class="search-content">
-                <form action="{{ route('dashboard') }}" id="submitform" autocomplete="off">
+                <form action="{{ route('home') }}" id="submitform" autocomplete="off">
                     <input type="text" class="form-control" id="myText" name="search"
-                        placeholder="Search film..." required="">
+                        placeholder="Search film..." value="{{ request()->input('search') }}">
                     <button type="submit" class="search-icon"><i class="fas fa-search"></i></button>
                 </form>
                 <div class="nav search-result-pop" id="search-suggest" style="display: none;">
@@ -27,8 +27,8 @@
 
         <div id="header_right">
             <div class="header_right-user">
-                <a data-toggle="modal" data-target="#modallogin"
-                    class="btn-user btn btn-sm btn-primary btn-login">Login</a>
+                {{-- <a data-toggle="modal" data-target="#modallogin"
+                    class="btn-user btn btn-sm btn-primary btn-login">Login</a> --}}
             </div>
         </div>
         <div id="mobile_search"><i class="fa fa-search"></i></div>
