@@ -2,8 +2,8 @@
     <div id="footer-about">
         <div class="container">
             <div class="footer-top">
-                <a href="https://aniwatch.am" class="footer-logo">
-                    <img src="https://hianime.io/images/logo.png" alt="AniWatch">
+                <a href="{{ route('home') }}" class="footer-logo">
+                    <img src="/assets/images/candu.png" alt="AniWatch">
                     <div class="clearfix"></div>
                 </a>
                 <div class="footer-joingroup">
@@ -20,10 +20,9 @@
                 <div class="clearfix"></div>
             </div>
             <div class="about-text">
-                HiAnime does not store any files on our server, we only linked to the media which is hosted on
-                3rd party services.
+                Candu Movie is website streaming for best movies online with HD quality. You can watch free movies online
             </div>
-            <p class="copyright">© HiAnime.io. All rights reserved.</p>
+            <p class="copyright">© CanduMovie All rights reserved.</p>
         </div>
     </div>
 </div>

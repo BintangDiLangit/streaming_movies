@@ -2,7 +2,7 @@
     <div class="container">
         <div id="mobile_menu"><i class="fa fa-bars"></i></div>
         <a href="/" id="logo">
-            <img src="https://hianime.io/images/logo.png" alt="AniWatch">
+            <img src="/assets/images/candu.png" alt="AniWatch">
             <div class="clearfix"></div>
         </a>
         <div id="search">
@@ -27,8 +27,12 @@
 
         <div id="header_right">
             <div class="header_right-user">
-                {{-- <a data-toggle="modal" data-target="#modallogin"
-                    class="btn-user btn btn-sm btn-primary btn-login">Login</a> --}}
+                @if (auth()->check())
+                    <a href="{{ route('auth.sign-out') }}"
+                        class="btn-user btn btn-sm btn-primary btn-login">Logout</a>
+                @else
+                    <a href="{{ route('auth.sign-in.index') }}" class="btn-user btn btn-sm btn-primary btn-login">Login</a>
+                @endif
             </div>
         </div>
         <div id="mobile_search"><i class="fa fa-search"></i></div>
