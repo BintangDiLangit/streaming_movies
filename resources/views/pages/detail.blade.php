@@ -127,8 +127,8 @@
                 <div class="clearfix"></div>
               </div>
               <div class="input-group mb-3" style="max-width: 500px">
-                {{-- <span class="input-group-text" id="basic-addon1" style="max-height: 38px">/az/</span> --}}
-                <input type="text" id="custom-code" class="form-control" placeholder="Make custom url" aria-label="Username" aria-describedby="basic-addon1">
+                <span class="input-group-text" id="basic-addon1" style="max-height: 38px">/cu/</span>
+                <input type="text" id="custom-code" class="form-control" placeholder="Custom url ..." aria-label="Username" aria-describedby="basic-addon1">
                 <button type="button" id="shorten-button" class="btn btn-primary ml-2" style="max-height: 38px">Shorted</button>
               </div>
             </div>
