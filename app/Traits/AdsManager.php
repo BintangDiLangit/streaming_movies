@@ -47,8 +47,14 @@ trait AdsManager
     public function setAds() {
         $ads = Ads::first();
 
-        $this->everyRefreshPage($ads->refresh_page_ads_status, $ads->refresh_page_ads_image_url, $ads->refresh_page_ads_redirect_url);
-        $this->everyMinute($ads->minute_ads_status, $ads->minute_ads_redirect_url, $ads->minute_ads_interval);
-        $this->staticAds($ads->static_ads_status, $ads->static_ads_image_url, $ads->static_ads_redirect_url);
+        if ($ads){
+            $this->everyRefreshPage($ads->refresh_page_ads_status, $ads->refresh_page_ads_image_url, $ads->refresh_page_ads_redirect_url);
+            $this->everyMinute($ads->minute_ads_status, $ads->minute_ads_redirect_url, $ads->minute_ads_interval);
+            $this->staticAds($ads->static_ads_status, $ads->static_ads_image_url, $ads->static_ads_redirect_url);
+        }else {
+            $this->everyRefreshPage('off');
+            $this->everyMinute('off');
+            $this->staticAds('off');
+        }
     }
 }
