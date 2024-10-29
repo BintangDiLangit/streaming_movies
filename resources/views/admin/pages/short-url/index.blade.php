@@ -1,7 +1,7 @@
 @extends('admin.partials.index')
 
 @section('hed')
-<title>Admin | User Management</title>
+<title>Admin | Short Url Management</title>
 @endsection
 
 @section('content')
@@ -9,9 +9,9 @@
 <div class="row">
   <div class="col-12">
     <div class="card mb-4">
-      <form action="{{ route('admin.user.index') }}" method="get">
+      <form action="{{ route('admin.short-url.index') }}" method="get">
         <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-          <h6>User Registered</h6>
+          <h6>Short Url Registered</h6>
           <div class="input-group flex-nowrap w-50">
             <span class="input-group-text" id="addon-wrapping">
               <i class="fa fa-search"></i>
@@ -26,10 +26,10 @@
           <table class="table align-items-center mb-0">
             <thead>
               <tr>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Redirect</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
               </tr>
             </thead>
@@ -39,32 +39,42 @@
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">{{ $data->name }}</h6>
-                      <p class="text-xs text-secondary mb-0">{{ $data->email }}</p>
+                      <h6 class="mb-0 text-sm">{{ $data->hits }}</h6>
+                      <p class="text-xs text-secondary mb-0">Total hits</p>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <p class="text-xs font-weight-bold mb-0">Role</p>
-                  <p class="text-xs text-secondary mb-0">User</p>
+                  <p class="text-xs font-weight-bold mb-0">{{ $data->code }}</p>
+                  <p class="text-xs text-secondary mb-0">Code Path</p>
                 </td>
                 <td class="align-middle text-center text-sm">
-                  <span class="badge badge-sm bg-gradient-success">Active</span>
+                    @if ($data->status == 'active')
+                        <span class="badge badge-sm bg-gradient-success">{{ $data->status }}</span>
+                    @else
+                        <span class="badge badge-sm bg-gradient-danger">{{ $data->status }}</span>
+                    @endif
                 </td>
                 <td class="align-middle text-center">
                   <span class="text-secondary text-xs font-weight-bold">
-                    {{ $data->created_at->diffForHumans() }}
+                    {{ $data->url }}
                   </span>
                 </td>
                 <td class="align-middle text-center">
-                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs me-5" data-bs-toggle="modal" data-bs-target="#editModal" data-bs-id="{{ $data->id }}" data-bs-name="{{ $data->name }}" data-bs-email="{{ $data->email }}" data-toggle="tooltip" data-original-title="Edit user">
-                    Edit
-                  </a>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <form id="toggleForm" action="{{ route('admin.short-url.switch-status', $data->id) }}" method="POST" class="me-3">
+                            @csrf
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" {{ $data->status == 'active' ? 'checked' : '' }} type="checkbox" role="switch" id="flexSwitchCheckChecked" name="status"
+                                onchange="document.getElementById('toggleForm').submit();">
+                            </div>
+                        </form>
 
-                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs delete-alert" data-bs-url="{{ route('admin.film.destroy', $data->id) }}" data-bs-method="DELETE">
-                    <i class="fa fa-trash me-sm-1"></i>
-                    <span class="d-sm-inline d-none">Delete</span>
-                  </a>
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs delete-alert" data-bs-url="{{ route('admin.short-url.destroy', $data->id) }}" data-bs-method="DELETE">
+                            <i class="fa fa-trash me-sm-1"></i>
+                            <span class="d-sm-inline d-none">Delete</span>
+                        </a>
+                    </div>
                 </td>
               </tr>
               @endforeach
@@ -79,30 +89,24 @@
 </div>
 
 <!-- Modal -->
-<form role="form text-left" action="{{ route('admin.user.store') }}" method="post">
+<form role="form text-left" action="{{ route('admin.short-url.store') }}" method="post">
   @csrf
   <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModal" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Add new user</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add new URL</h1>
         </div>
         <div class="modal-body">
           <div class="mb-3">
-            <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="email-addon" name="name" required>
-            @error('name')
+            <input type="text" class="form-control" placeholder="code path" aria-label="Name" aria-describedby="email-addon" name="code" required>
+            @error('code')
             <div class="text-danger">{{ $message }}</div>
             @enderror
           </div>
           <div class="mb-3">
-            <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon" name="email" required>
-            @error('email')
-            <div class="text-danger">{{ $message }}</div>
-            @enderror
-          </div>
-          <div class="mb-3">
-            <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon" name="password" required>
-            @error('password')
+            <input type="text" class="form-control" placeholder="redirect url" aria-label="Email" aria-describedby="email-addon" name="url" required>
+            @error('url')
             <div class="text-danger">{{ $message }}</div>
             @enderror
           </div>
