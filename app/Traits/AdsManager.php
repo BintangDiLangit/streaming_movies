@@ -2,6 +2,8 @@
 
 namespace App\Traits;
 
+use App\Models\Ads;
+
 trait AdsManager
 {
     // Function untuk refresh page ads
@@ -42,9 +44,11 @@ trait AdsManager
         ]);
     }
 
-    public function setAllStatus(string $status) {
-        $this->everyRefreshPage($status);
-        $this->everyMinute($status);
-        $this->staticAds($status);
+    public function setAds() {
+        $ads = Ads::first();
+
+        $this->everyRefreshPage($ads->refresh_page_ads_status, $ads->refresh_page_ads_image_url, $ads->refresh_page_ads_redirect_url);
+        $this->everyMinute($ads->minute_ads_status, $ads->minute_ads_redirect_url, $ads->minute_ads_interval);
+        $this->staticAds($ads->static_ads_status, $ads->static_ads_image_url, $ads->static_ads_redirect_url);
     }
 }
