@@ -19,6 +19,16 @@ class StoreHelper {
 
                 return '/assets/images/thumbnails/' . $filename;
 
+            } elseif ($type == 'ads'){
+
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $folderPath = public_path('assets/images/ads');
+
+                self::createDirectoryIfNotExists($folderPath);
+                $file->move($folderPath, $filename);
+
+                return '/assets/images/ads/' . $filename;
+
             }  else {
 
                 throw new \Exception('Invalid type');

@@ -9,10 +9,18 @@
 <div class="row">
   <div class="col-12">
     <div class="card mb-4">
-      <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-        <h6>User Registered</h6>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add new</button>
-      </div>
+      <form action="{{ route('admin.user.index') }}" method="get">
+        <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+          <h6>User Registered</h6>
+          <div class="input-group flex-nowrap w-50">
+            <span class="input-group-text" id="addon-wrapping">
+              <i class="fa fa-search"></i>
+            </span>
+            <input type="text" class="form-control" placeholder="Search name" aria-label="Search" aria-describedby="addon-wrapping" name="search" value="{{ request()->input('search') }}">
+          </div>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add new</button>
+      </form>
+    </div>
       <div class="card-body px-0 pt-0 pb-2">
         <div class="table-responsive p-0">
           <table class="table align-items-center mb-0">

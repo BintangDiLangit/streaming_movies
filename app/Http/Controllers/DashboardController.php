@@ -13,7 +13,7 @@ class DashboardController extends Controller
     use AdsManager;
 
     public function index(Request $request) {
-        $this->setAllStatus(env('APP_ADS_STATUS'));
+        $this->setAds();
 
         $datas = Film::query();
 
@@ -27,7 +27,7 @@ class DashboardController extends Controller
     }
 
     public function show(Request $request, $slug){
-        $this->setAllStatus(env('APP_ADS_STATUS'));
+        $this->setAds();
 
         $data = Film::where('slug', $slug)->first();
 

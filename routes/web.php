@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Ads\AdsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\Film\FilmController;
@@ -41,5 +42,11 @@ Route::prefix('/admin')->name('admin.')->middleware(['auth', 'roles:admin'])->gr
         Route::get('/{id}/edit', [FilmController::class, 'edit'])->name('edit');
         Route::put('/{id}', [FilmController::class, 'update'])->name('update');
         Route::delete('/{id}', [FilmController::class, 'destroy'])->name('destroy');
+    });
+
+    /** Ads */
+    Route::prefix('/ads')->name('ads.')->group(function () {
+        Route::get('/', [AdsController::class, 'index'])->name('index');
+        Route::put('/', [AdsController::class, 'update'])->name('update');
     });
 });
