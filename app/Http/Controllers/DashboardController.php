@@ -64,6 +64,11 @@ class DashboardController extends Controller
 
     public function shortUrlIndex($code){
         $shortUrl = ShortUrl::where('code', $code)->first();
+
+        if (!$shortUrl || $shortUrl->status != 'active') {
+            abort(404);
+        }
+
         $shortUrl->hits += 1;
         $shortUrl->save();
 
