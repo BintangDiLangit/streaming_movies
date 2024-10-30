@@ -96,7 +96,7 @@
             </div>
           </div>
           <div class="share-buttons share-buttons-detail">
-            <div class="container d-flex justify-content-between align-items-center">
+            <div class="container d-flex justify-content-start align-items-center">
               <div class="share-buttons-block">
                 <div class="share-icon"></div>
                 <div class="sbb-title mr-3">
@@ -125,13 +125,6 @@
                 </div>
                 {{-- shere buttons --}}
                 <div class="clearfix"></div>
-              </div>
-              <div class="input-group mb-3" style="max-width: 500px">
-                @if(Auth::check() && auth()->user()->role->name == 'admin')
-                    <span class="input-group-text" id="basic-addon1" style="max-height: 38px">/cu/</span>
-                    <input type="text" id="custom-code" class="form-control" placeholder="Custom url ..." aria-label="Username" aria-describedby="basic-addon1">
-                    <button type="button" id="shorten-button" class="btn btn-primary ml-2" style="max-height: 38px">Shorted</button>
-                @endif
               </div>
             </div>
           </div>

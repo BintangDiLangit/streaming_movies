@@ -1,7 +1,32 @@
 @extends('admin.partials.index')
 
-@section('hed')
+@section('head')
 <title>Admin | Short Url Management</title>
+
+<style>
+  /* Gaya untuk pop-up */
+  .copy-popup {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+  }
+
+  .copy-popup.show {
+    display: block;
+    opacity: 1;
+  }
+
+</style>
+
 @endsection
 
 @section('content')
@@ -70,6 +95,11 @@
                             </div>
                         </form>
 
+                        <a href="javascript:;" onclick="copyLink('{{ env('APP_URL') . '/cu/' . $data->code }}')" class="text-secondary font-weight-bold text-xs me-3">
+                            <i class="fa fa-copy me-sm-1"></i>
+                            <span class="d-sm-inline d-none">Copy</span>
+                        </a>
+
                         <a href="javascript:;" class="text-secondary font-weight-bold text-xs delete-alert" data-bs-url="{{ route('admin.short-url.destroy', $data->id) }}" data-bs-method="DELETE">
                             <i class="fa fa-trash me-sm-1"></i>
                             <span class="d-sm-inline d-none">Delete</span>
@@ -87,6 +117,8 @@
     </div>
   </div>
 </div>
+
+<div id="copy-popup" class="copy-popup">Url has been copied!</div>
 
 <!-- Modal -->
 <form role="form text-left" action="{{ route('admin.short-url.store') }}" method="post">
@@ -119,39 +151,6 @@
   </div>
 </form>
 
-<!-- Modal Edit -->
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editModalLabel">Edit User</h5>
-      </div>
-      <form role="form text-left" action="{{ route('admin.user.update') }}" method="post">
-        @csrf
-        @method('PUT')
-        <div class="modal-body">
-          <input type="hidden" id="editUserId" name="id">
-          <div class="mb-3">
-            <label for="editName" class="form-label">Name*</label>
-            <input type="text" class="form-control" id="editName" name="name" required>
-          </div>
-          <div class="mb-3">
-            <label for="editEmail" class="form-label">Email*</label>
-            <input type="email" class="form-control" id="editEmail" name="email" required>
-          </div>
-          <div class="mb-3">
-            <label for="editPassword" class="form-label">Password</label>
-            <input type="password" class="form-control" id="editPassword" name="password">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Save changes</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
 @include('admin.components.modal-confirmation-delete')
 
 <script>
@@ -176,6 +175,22 @@
     inputName.value = userName;
     inputEmail.value = userEmail;
   });
+</script>
+
+<script>
+    function copyLink(url) {
+      navigator.clipboard.writeText(url)
+        .then(() => {
+          const popup = document.getElementById("copy-popup");
+          popup.classList.add("show");
+          setTimeout(() => {
+            popup.classList.remove("show");
+          }, 2000);
+        })
+        .catch(err => {
+          console.error("Gagal menyalin URL:", err);
+        });
+    }
 </script>
 
 @endsection
