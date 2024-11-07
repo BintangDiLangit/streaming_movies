@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Admin\ShortUrl;
+namespace App\Http\Controllers\Admin\ShortUrlRedirect;
 
 use App\Http\Controllers\Controller;
-use App\Models\ShortUrl;
+use App\Models\ShortUrlRedirect;
 use Illuminate\Http\Request;
 
-class ShortUrlController extends Controller
+class ShortUrlRedirectController extends Controller
 {
     public function index(Request $request){
-        $datas = ShortUrl::query();
+        $datas = ShortUrlRedirect::query();
 
         if ($request->has('search')){
             $datas->where('url', 'like', '%'.$request->search.'%');
         }
 
         $datas = $datas->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
-        return view('admin.pages.short-url.index', compact('datas'));
+        return view('admin.pages.short-url-redirect.index', compact('datas'));
     }
 
     public function store(Request $request){
@@ -25,7 +25,7 @@ class ShortUrlController extends Controller
             'url' => 'required',
         ]);
 
-        ShortUrl::create([
+        ShortUrlRedirect::create([
             'code' => $request->code,
             'url' => $request->url,
         ]);
@@ -40,7 +40,7 @@ class ShortUrlController extends Controller
             'url' => 'required',
         ]);
 
-        ShortUrl::where('id', $request->id)->update([
+        ShortUrlRedirect::where('id', $request->id)->update([
             'code' => $request->code,
             'url' => $request->url,
         ]);
@@ -49,7 +49,7 @@ class ShortUrlController extends Controller
     }
 
     public function destroy($id) {
-        $shortUrl = ShortUrl::find($id);
+        $shortUrl = ShortUrlRedirect::find($id);
 
         if (!$shortUrl){
             return redirect()->back()->with('errorr', 'ID not found');
@@ -61,7 +61,7 @@ class ShortUrlController extends Controller
     }
 
     public function switchStatus($id) {
-        $shortUrl = ShortUrl::find($id);
+        $shortUrl = ShortUrlRedirect::find($id);
 
         if (!$shortUrl){
             return redirect()->back()->with('errorr', 'ID not found');

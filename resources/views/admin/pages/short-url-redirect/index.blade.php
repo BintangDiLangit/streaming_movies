@@ -34,7 +34,7 @@
 <div class="row">
   <div class="col-12">
     <div class="card mb-4">
-      <form action="{{ route('admin.short-url.index') }}" method="get">
+      <form action="{{ route('admin.short-url-redirect.index') }}" method="get">
         <div class="card-header pb-0 d-flex justify-content-between align-items-center">
           <h6>Short Url Registered</h6>
           <div class="input-group flex-nowrap w-50">
@@ -87,7 +87,7 @@
                 </td>
                 <td class="align-middle text-center">
                     <div class="d-flex align-items-center justify-content-center">
-                        <form id="toggleForm" action="{{ route('admin.short-url.switch-status', $data->id) }}" method="POST" class="me-3">
+                        <form id="toggleForm" action="{{ route('admin.short-url-redirect.switch-status', $data->id) }}" method="POST" class="me-3">
                             @csrf
                             <div class="form-check form-switch">
                                 <input class="form-check-input" {{ $data->status == 'active' ? 'checked' : '' }} type="checkbox" role="switch" id="flexSwitchCheckChecked" name="status"
@@ -95,12 +95,12 @@
                             </div>
                         </form>
 
-                        <a href="javascript:;" onclick="copyLink('{{ env('APP_URL') . '/cu/' . $data->code }}')" class="text-secondary font-weight-bold text-xs me-3">
+                        <a href="javascript:;" onclick="copyLink('{{ env('APP_URL_REDIRECT') . '/' . $data->code }}')" class="text-secondary font-weight-bold text-xs me-3">
                             <i class="fa fa-copy me-sm-1"></i>
                             <span class="d-sm-inline d-none">Copy</span>
                         </a>
 
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs delete-alert" data-bs-url="{{ route('admin.short-url.destroy', $data->id) }}" data-bs-method="DELETE">
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs delete-alert" data-bs-url="{{ route('admin.short-url-redirect.destroy', $data->id) }}" data-bs-method="DELETE">
                             <i class="fa fa-trash me-sm-1"></i>
                             <span class="d-sm-inline d-none">Delete</span>
                         </a>
@@ -121,7 +121,7 @@
 <div id="copy-popup" class="copy-popup">Url has been copied!</div>
 
 <!-- Modal -->
-<form role="form text-left" action="{{ route('admin.short-url.store') }}" method="post">
+<form role="form text-left" action="{{ route('admin.short-url-redirect.store') }}" method="post">
   @csrf
   <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModal" aria-hidden="true">
     <div class="modal-dialog">
