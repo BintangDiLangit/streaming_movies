@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Ads\AdsController;
+use App\Http\Controllers\Admin\ShortUrlRedirect\ShortUrlRedirectController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\Film\FilmController;
@@ -58,5 +59,14 @@ Route::prefix('/admin')->name('admin.')->middleware(['auth', 'roles:admin'])->gr
         Route::put('/', [ShortUrlController::class, 'put'])->name('put');
         Route::delete('/{id}', [ShortUrlController::class, 'destroy'])->name('destroy');
         Route::post('/switch-status/{id}', [ShortUrlController::class, 'switchStatus'])->name('switch-status');
+    });
+
+    /**Short Url Redirect */
+    Route::prefix('/short-url-redirect')->name('short-url-redirect.')->group(function () {
+        Route::get('/', [ShortUrlRedirectController::class, 'index'])->name('index');
+        Route::post('/', [ShortUrlRedirectController::class, 'store'])->name('store');
+        Route::put('/', [ShortUrlRedirectController::class, 'put'])->name('put');
+        Route::delete('/{id}', [ShortUrlRedirectController::class, 'destroy'])->name('destroy');
+        Route::post('/switch-status/{id}', [ShortUrlRedirectController::class, 'switchStatus'])->name('switch-status');
     });
 });
