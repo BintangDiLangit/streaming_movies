@@ -11,7 +11,7 @@ class StoreHelper {
         try {
             if ($type == 'thumbnails'){
 
-                $filename = time() . '_' . $file->getClientOriginalName();
+                $filename = uniqid();
                 $folderPath = public_path('assets/images/thumbnails');
 
                 self::createDirectoryIfNotExists($folderPath);
@@ -21,7 +21,7 @@ class StoreHelper {
 
             } elseif ($type == 'ads'){
 
-                $filename = time() . '_' . $file->getClientOriginalName();
+                $filename = uniqid();
                 $folderPath = public_path('assets/images/ads');
 
                 self::createDirectoryIfNotExists($folderPath);
