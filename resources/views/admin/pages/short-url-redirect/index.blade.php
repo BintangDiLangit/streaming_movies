@@ -1,6 +1,7 @@
 @extends('admin.partials.index')
 
 @section('head')
+
 <title>Admin | Short Url Management</title>
 
 <style>
@@ -26,7 +27,6 @@
   }
 
 </style>
-
 @endsection
 
 @section('content')
@@ -53,6 +53,7 @@
               <tr>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Base on</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Redirect</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
@@ -72,6 +73,11 @@
                 <td>
                   <p class="text-xs font-weight-bold mb-0">{{ $data->code }}</p>
                   <p class="text-xs text-secondary mb-0">Code Path</p>
+                </td>
+                <td class="align-middle text-center">
+                    <p class="text-xs text-secondary mb-0">
+                        {{ $data->film->title }}
+                    </p>
                 </td>
                 <td class="align-middle text-center text-sm">
                     @if ($data->status == 'active')
@@ -142,6 +148,20 @@
             <div class="text-danger">{{ $message }}</div>
             @enderror
           </div>
+          {{-- option select --}}
+          <div class="mb-3">
+            <select class="form-select js-example-basic-single" name="film_id" required>
+              <option value="">Select film</option>
+
+              @foreach ($films as $film)
+                <option value="{{ $film->id }}">{{ $film->title }}</option>
+              @endforeach
+
+            </select>
+            @error('status')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
+          </div>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Save</button>
@@ -192,5 +212,4 @@
         });
     }
 </script>
-
 @endsection

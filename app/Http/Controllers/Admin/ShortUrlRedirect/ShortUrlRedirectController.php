@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\ShortUrlRedirect;
 
 use App\Http\Controllers\Controller;
+use App\Models\Film;
 use App\Models\ShortUrlRedirect;
 use Illuminate\Http\Request;
 
@@ -15,19 +16,23 @@ class ShortUrlRedirectController extends Controller
             $datas->where('url', 'like', '%'.$request->search.'%');
         }
 
-        $datas = $datas->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
-        return view('admin.pages.short-url-redirect.index', compact('datas'));
+        $films = Film::get();
+
+        $datas = $datas->with('film')->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
+        return view('admin.pages.short-url-redirect.index', compact('datas', 'films'));
     }
 
     public function store(Request $request){
         $request->validate([
             'code' => 'required|unique:short_urls,code',
             'url' => 'required',
+            'film_id' => 'required|exists:films,id',
         ]);
 
         ShortUrlRedirect::create([
             'code' => $request->code,
             'url' => $request->url,
+            'film_id' => $request->film_id,
         ]);
 
         return redirect()->back()->with('success', 'Success create short url');
