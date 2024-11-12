@@ -2,7 +2,7 @@
     <div class="container">
         <div id="mobile_menu"><i class="fa fa-bars"></i></div>
         <a href="/" id="logo">
-            <img src="/assets/images/candu.png" alt="AniWatch">
+            {{-- <img src="/assets/images/candu.png" alt="AniWatch"> --}}
             <div class="clearfix"></div>
         </a>
         <div id="search">
