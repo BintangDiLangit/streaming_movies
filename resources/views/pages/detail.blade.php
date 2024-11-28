@@ -52,7 +52,7 @@
                                     <div class="anis-watch-wrap">
                                         <div class="anis-watch anis-watch-tv">
                                             <div class="watch-player">
-                                                <div class="player-frame">
+                                                <div class="player-frame" style="position:relative;padding-top:56.25%;">
                                                     <div class="loading-relative loading-box" id="embed-loading">
                                                         <div class="loading">
                                                             <div class="span1"></div>
@@ -60,6 +60,11 @@
                                                             <div class="span3"></div>
                                                         </div>
                                                     </div>
+                                                    {{-- <div style="position:relative;padding-top:56.25%;"><iframe
+                                                            src="{{ $data->path_src_vidio }}" loading="lazy"
+                                                            style="border:0;position:absolute;top:0;height:100%;width:100%;"
+                                                            allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
+                                                            allowfullscreen="true"></iframe></div> --}}
                                                     <iframe id="iframe-embed" src="{{ $data->path_src_vidio }}"
                                                         frameborder="0" referrerpolicy="strict-origin"
                                                         allow="autoplay; fullscreen; geolocation; display-capture; picture-in-picture"
@@ -182,7 +187,7 @@
     <script>
         document.getElementById('shorten-button').addEventListener('click', async () => {
             let customCode = document.getElementById('custom-code').value
-        .trim(); // Mengambil nilai dari input dan menghapus spasi
+                .trim(); // Mengambil nilai dari input dan menghapus spasi
             const currentUrl = window.location.href; // Mengambil URL dari halaman saat ini
 
             customCode = customCode.replace(/\s+/g, ''); // Menghapus semua spasi
@@ -211,10 +216,10 @@
                 if (data.status) {
                     // Jika berhasil, salin URL ke clipboard
                     const shortUrl =
-                    `${window.location.origin}/cu/${data.data.code}`; // Sesuaikan format URL yang dihasilkan
+                        `${window.location.origin}/cu/${data.data.code}`; // Sesuaikan format URL yang dihasilkan
                     await navigator.clipboard.writeText(shortUrl);
                     showNotification(`Short URL berhasil dibuat dan disalin ke clipboard: ${shortUrl}`,
-                    false); // Tampilkan pesan sukses
+                        false); // Tampilkan pesan sukses
                 } else {
                     // Tampilkan pesan error
                     console.log('Error:', data.message);
