@@ -104,6 +104,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
+                            <label for="">Thumbnail</label>
                             <input type="file" class="form-control" placeholder="Email" aria-label="Email"
                                 aria-describedby="email-addon" name="thumbnail" required>
                             @error('thumbnail')
@@ -111,6 +112,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label for="">Title</label>
                             <input type="text" class="form-control" placeholder="Title" aria-label="Title"
                                 aria-describedby="title-addon" id="title" name="title" required>
                             @error('title')
@@ -118,6 +120,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label for="">Slug</label>
                             <input type="text" class="form-control" placeholder="Slug (automation)" aria-label="Slug"
                                 aria-describedby="slug-addon" id="slug" name="slug" readonly>
                             @error('slug')
@@ -125,6 +128,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label for="">File Video</label>
                             <input type="file" accept="video/mp4" class="form-control"
                                 placeholder="Video file, type embeded" aria-label="Path Source Vidio"
                                 aria-describedby="email-addon" name="video_file" required>
@@ -133,6 +137,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label for="">Description</label>
                             <textarea type="text" class="form-control" placeholder="Description ..." aria-label="Password"
                                 aria-describedby="password-addon" name="description"></textarea>
                             @error('password')

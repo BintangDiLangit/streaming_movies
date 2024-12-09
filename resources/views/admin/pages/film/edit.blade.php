@@ -22,12 +22,14 @@
                             <!-- Left Column (Form Inputs) -->
                             <div class="col-md-6 order-2 order-md-1">
                                 <div class="mb-3">
+                                    <label for="">Thumbnail</label>
                                     <input type="file" class="form-control" id="thumbnail" name="thumbnail">
                                     @error('thumbnail')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="mb-3">
+                                    <label for="">Title</label>
                                     <input type="text" class="form-control" placeholder="Title" aria-label="Title"
                                         id="title" name="title" value="{{ $film->title }}" required>
                                     @error('title')
@@ -35,6 +37,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
+                                    <label for="">Slug</label>
                                     <input type="text" class="form-control" placeholder="Slug (automated)" id="slug"
                                         name="slug" value="{{ $film->slug }}" readonly>
                                     @error('slug')
@@ -42,6 +45,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
+                                    <label for="">Total Minute</label>
                                     <input type="number" class="form-control" placeholder="Total Minute"
                                         name="total_minute" value="{{ $film->total_minute }}" required>
                                     @error('total_minute')
@@ -49,6 +53,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
+                                    <label for="">URL video (embed link)</label>
                                     <input type="text" class="form-control" placeholder="URL video (embed link)"
                                         name="path_src_vidio" disabled value="{{ $film->path_src_vidio }}" required>
                                     @error('path_src_vidio')
@@ -56,6 +61,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
+                                    <label for="">File Video</label>
                                     <input type="file" accept="video/mp4" class="form-control"
                                         placeholder="Video file, type embeded" aria-label="Path Source Vidio"
                                         aria-describedby="email-addon" name="video_file" required>
@@ -64,6 +70,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
+                                    <label for="">Description</label>
                                     <textarea class="form-control" placeholder="Description..." name="description" style="height: 100px">{{ $film->description }}</textarea>
                                     @error('description')
                                         <div class="text-danger">{{ $message }}</div>
