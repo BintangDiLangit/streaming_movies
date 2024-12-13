@@ -44,7 +44,9 @@ class FilmController extends Controller
             DB::beginTransaction();
 
             $video = $request->file('video_file');
-            $videoPath = $video->getPathname();
+            $tempVideoPath = storage_path('app/tmp_videos/' . $video->getClientOriginalName());
+            $video->move(storage_path('app/tmp_videos/'), $video->getClientOriginalName());
+
 
             $addVideo = $this->client->request('POST', 'https://video.bunnycdn.com/library/' . env('BUNNY_LIBRARY_ID') . '/videos', [
                 'body' => '{"title":"' . $request->title . '"}',
@@ -60,33 +62,13 @@ class FilmController extends Controller
             $responseData = json_decode($addVideo, true);
             $videoId = $responseData['guid'];
 
-            // $uploadVideo = $this->client->request('PUT', "https://video.bunnycdn.com/library/" . env('BUNNY_LIBRARY_ID') . "/videos/{$videoId}", [
-            //     'body' => file_get_contents($videoPath),
-            //     'headers' => [
-            //         'AccessKey' => env('BUNNY_ACCESS_KEY'),
-            //         'Content-Type' => 'application/octet-stream'
-            //     ],
-            // ]);
-
-            $videoUpload = VideoUpload::create([
+            VideoUpload::create([
                 'video_id' => $videoId,
-                'video_path' => $videoPath,
+                'video_path' => $tempVideoPath,
                 'status' => 'processing',
             ]);
 
-            UploadVideoJob::dispatch($videoPath, $videoId);
-
-            // $getVideo = $this->client->request('GET', 'https://video.bunnycdn.com/library/' . env('BUNNY_LIBRARY_ID') . '/videos/' . $videoId, [
-            //     'headers' => [
-            //         'AccessKey' => env('BUNNY_ACCESS_KEY'),
-            //         'accept' => 'application/json',
-            //         'content-type' => 'application/json',
-            //     ],
-            // ]);
-
-            // $getVideo = $getVideo->getBody();
-
-            // $responseDataVideo = json_decode($getVideo, true);
+            UploadVideoJob::dispatch($tempVideoPath, $videoId);
 
             Film::create([
                 'title' => $request->title,
@@ -128,7 +110,6 @@ class FilmController extends Controller
         $video->move(storage_path('app/tmp_videos/'), $video->getClientOriginalName());
 
         if ($video) {
-            $videoPath = $video->getPathname();
 
             $addVideo = $this->client->request('POST', 'https://video.bunnycdn.com/library/' . env('BUNNY_LIBRARY_ID') . '/videos', [
                 'body' => '{"title":"' . $request->title . '"}',
@@ -144,7 +125,7 @@ class FilmController extends Controller
             $responseData = json_decode($addVideo, true);
             $videoId = $responseData['guid'];
 
-            $videoUpload = VideoUpload::create([
+            VideoUpload::create([
                 'video_id' => $videoId,
                 'video_path' => $tempVideoPath,
                 'status' => 'processing',
