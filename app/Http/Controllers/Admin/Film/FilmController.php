@@ -48,6 +48,8 @@ class FilmController extends Controller
 
                         $videoData = json_decode($response->getBody(), true);
 
+                        Log::info("Video Data" . $videoData['status']);
+
                         // Update the `status` in the database based on BunnyCDN's response
                         if ($videoData['status'] === 1) { // Video is ready
                             $videoUpload->update(['status' => 'done']);
