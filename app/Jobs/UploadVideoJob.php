@@ -33,10 +33,18 @@ class UploadVideoJob implements ShouldQueue
     {
         Log::info("Starting video upload for video ID: {$this->videoId}");
 
+        $timeout = $this->attempts() === 1 ? 10 : 0; // First attempt: 10 seconds, Subsequent attempts: unlimited
+        $connectTimeout = $this->attempts() === 1 ? 5 : 30;
+
+        Log::info("=== Timeout ===");
+        Log::info($timeout);
+        Log::info($connectTimeout);
+
         $client = new Client([
-            'timeout' => 300,
-            'connect_timeout' => 30,
+            'timeout' => $timeout > 0 ? $timeout : null,
+            'connect_timeout' => $connectTimeout,
         ]);
+
         try {
 
             if (!file_exists($this->videoPath)) {
