@@ -129,7 +129,7 @@ class FilmController extends Controller
 
             Log::info("==== Video Upload Created ===");
 
-            UploadVideoJob::dispatch($tempVideoPath, $videoId);
+            UploadVideoJob::dispatch($tempVideoPath, $videoId)->onQueue('uploads');
 
             Log::info("==== Processing Job ===");
 
@@ -204,7 +204,7 @@ class FilmController extends Controller
                 ]);
 
                 // Step 3: Dispatch the job to upload the video in the background
-                UploadVideoJob::dispatch($videoFilePath, $videoId);
+                UploadVideoJob::dispatch($videoFilePath, $videoId)->onQueue('uploads');
 
                 // Update the film with placeholders for the video
                 $dataUpdate['path_src_vidio'] = "https://iframe.mediadelivery.net/play/" . env('BUNNY_LIBRARY_ID') . "/" . $videoId;
