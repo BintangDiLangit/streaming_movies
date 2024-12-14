@@ -108,19 +108,6 @@ class FilmController extends Controller
             Log::info($videoId);
             Log::info("======");
 
-            VideoUpload::create([
-                'video_id' => $videoId,
-                'video_path' => $tempVideoPath,
-                'status' => 'processing',
-            ]);
-
-            Log::info("==== Video Upload Created ===");
-
-            UploadVideoJob::dispatch($tempVideoPath, $videoId);
-
-            Log::info("==== Processing Job ===");
-
-
             $film = Film::create([
                 'title' => $request->title,
                 'slug' => $request->slug,
@@ -131,7 +118,20 @@ class FilmController extends Controller
                 'video_id' => $videoId,
             ]);
 
+            VideoUpload::create([
+                'video_id' => $videoId,
+                'video_path' => $tempVideoPath,
+                'status' => 'processing',
+            ]);
+
             DB::commit();
+
+
+            Log::info("==== Video Upload Created ===");
+
+            UploadVideoJob::dispatch($tempVideoPath, $videoId);
+
+            Log::info("==== Processing Job ===");
 
 
             return response()->json([
@@ -141,6 +141,8 @@ class FilmController extends Controller
             ]);
         } catch (\Throwable $th) {
             DB::rollBack();
+            Log::error("Error Add Film");
+            Log::error($th->getMessage());
             return response()->json([
                 'status' => 'error',
                 'message' => $th->getMessage(),
@@ -156,65 +158,74 @@ class FilmController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'title' => 'required',
-            'slug' => 'required',
-            'description' => 'required',
-            'total_minute' => 'required',
-            'thumbnail' => 'nullable|file|image|mimes:jpeg,png,jpg|max:20480',
-        ]);
-
-        $fileName = $request->input('video_file_name');
-        $videoFilePath = storage_path('app/tmp_videos/' . $fileName);
-
-        if ($videoFilePath) {
-
-            $addVideoResponse = $this->client->request('POST', 'https://video.bunnycdn.com/library/' . env('BUNNY_LIBRARY_ID') . '/videos', [
-                'body' => '{"title":"' . $request->title . '"}',
-                'headers' => [
-                    'AccessKey' => env('BUNNY_ACCESS_KEY'),
-                    'accept' => 'application/json',
-                    'content-type' => 'application/json',
-                ],
+        try {
+            $request->validate([
+                'title' => 'required',
+                'slug' => 'required',
+                'description' => 'required',
+                'total_minute' => 'required',
+                'thumbnail' => 'nullable|file|image|mimes:jpeg,png,jpg|max:20480',
             ]);
-
-            $responseData = json_decode($addVideoResponse->getBody(), true);
-            $videoId = $responseData['guid'];
-
-            VideoUpload::create([
-                'video_id' => $videoId,
-                'video_path' => $videoFilePath,
-                'status' => 'processing',
-            ]);
-
-            UploadVideoJob::dispatch($videoFilePath, $videoId);
 
             $dataUpdate = [
                 'title' => $request->title,
                 'slug' => $request->slug,
                 'description' => $request->description,
                 'total_minute' => $request->total_minute,
-                'path_src_vidio' => "https://iframe.mediadelivery.net/play/" . env('BUNNY_LIBRARY_ID') . "/" . $videoId,
-                'video_id' => $videoId,
             ];
-        } else {
-            $dataUpdate = [
-                'title' => $request->title,
-                'slug' => $request->slug,
-                'description' => $request->description,
-                'total_minute' => $request->total_minute
-            ];
+
+            if ($request->hasFile('thumbnail')) {
+                $dataUpdate['path_thumbnail'] = StoreHelper::store($request->file('thumbnail'), 'thumbnails');
+            }
+
+            $fileName = $request->input('video_file_name');
+            $videoFilePath = storage_path('app/tmp_videos/' . $fileName);
+
+
+            if ($videoFilePath && file_exists($videoFilePath)) {
+                // Step 1: Create a new video entry in BunnyCDN
+                $addVideoResponse = $this->client->request('POST', 'https://video.bunnycdn.com/library/' . env('BUNNY_LIBRARY_ID') . '/videos', [
+                    'body' => '{"title":"' . $request->title . '"}',
+                    'headers' => [
+                        'AccessKey' => env('BUNNY_ACCESS_KEY'),
+                        'accept' => 'application/json',
+                        'content-type' => 'application/json',
+                    ],
+                ]);
+
+                $responseData = json_decode($addVideoResponse->getBody(), true);
+                $videoId = $responseData['guid'];
+
+                // Step 2: Create a VideoUpload entry
+                VideoUpload::create([
+                    'video_id' => $videoId,
+                    'video_path' => $videoFilePath,
+                    'status' => 'processing',
+                ]);
+
+                // Step 3: Dispatch the job to upload the video in the background
+                UploadVideoJob::dispatch($videoFilePath, $videoId);
+
+                // Update the film with placeholders for the video
+                $dataUpdate['path_src_vidio'] = "https://iframe.mediadelivery.net/play/" . env('BUNNY_LIBRARY_ID') . "/" . $videoId;
+                $dataUpdate['video_id'] = $videoId;
+            }
+
+            $film = Film::findOrFail($id);
+            $film->update($dataUpdate);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Film updated successfully. Video is being processed.',
+                'data' => $film,
+            ]);
+        } catch (\Throwable $th) {
+            Log::error("Error Update Film");
+            Log::error($th->getMessage());
+            return response()->json([
+                'status' => 'error',
+                'message' => $th->getMessage(),
+            ], 500);
         }
-
-
-        if ($request->hasFile('thumbnail')) {
-            $dataUpdate['path_thumbnail'] = StoreHelper::store($request->file('thumbnail'), 'thumbnails');
-        }
-
-        $film = Film::findOrFail($id);
-        $film->update($dataUpdate);
-
-        return redirect()->back()->with('success', 'Film updated successfully');
     }
 
     public function destroy($id)
