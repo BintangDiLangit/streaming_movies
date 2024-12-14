@@ -58,8 +58,10 @@
                                             <p class="text-xs font-weight-bold mb-0">{{ $data->total_minute }}</p>
                                             <p class="text-xs text-secondary mb-0">Minutes</p>
                                         </td>
+                                        {{-- @dd($data) --}}
                                         <td class="align-middle text-center text-sm">
-                                            <span class="badge badge-sm bg-gradient-success">Active</span>
+                                            <span
+                                                class="badge badge-sm bg-gradient-success">{{ isset($data->uploadVideo) ? Str::upper($data->uploadVideo->status) : 'PENDING' }}</span>
                                         </td>
                                         <td class="align-middle text-center">
                                             <span class="text-secondary text-xs font-weight-bold">
@@ -94,7 +96,8 @@
     </div>
 
     <!-- Modal -->
-    <form role="form text-left" action="{{ route('admin.film.store') }}" method="post" enctype="multipart/form-data">
+    <form id="filmForm" role="form text-left" action="{{ route('admin.film.store') }}" method="post"
+        enctype="multipart/form-data">
         @csrf
         <div class="modal fade modal-lg" id="addModal" tabindex="-1" aria-labelledby="addModal" aria-hidden="true">
             <div class="modal-dialog">
@@ -129,9 +132,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="">File Video</label>
-                            <input type="file" accept="video/mp4" class="form-control"
-                                placeholder="Video file, type embeded" aria-label="Path Source Vidio"
-                                aria-describedby="email-addon" name="video_file" required>
+                            <input type="file" id="videoFile" accept="video/mp4" class="form-control" name="video_file"
+                                required>
                             @error('video_file')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -146,12 +148,42 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" id="submitButton" class="btn btn-primary">Save</button>
                     </div>
                 </div>
             </div>
         </div>
     </form>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 9999; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: white;">
+            <div id="progressContainer" style="display: none;">
+                <p>Uploading video...</p>
+                <progress id="progressBar" value="0" max="100" style="width: 300px;"></progress>
+            </div>
+            <div id="loadingMessage" style="display: none;">
+                <p>Submitting data, please wait...</p>
+                <div class="spinner"
+                    style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 2s linear infinite;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Spinner animation */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
 
     @include('admin.components.modal-confirmation-delete')
 
@@ -163,9 +195,9 @@
             titleInput.addEventListener('input', function() {
                 let slug = titleInput.value
                     .toLowerCase()
-                    .replace(/[^a-z0-9\s-]/g, '') // Menghapus karakter khusus
-                    .replace(/\s+/g, '-') // Mengganti spasi dengan "-"
-                    .replace(/-+/g, '-'); // Menghilangkan tanda "-" berlebih
+                    .replace(/[^a-z0-9\s-]/g, '')
+                    .replace(/\s+/g, '-')
+                    .replace(/-+/g, '-');
 
                 slugInput.value = slug;
             });
@@ -181,7 +213,98 @@
                     clearInterval(this);
                     alert('Upload selesai!');
                 }
-            }, 5000); // Cek setiap 5 detik
+            }, 5000);
         }
+
+        const fileInput = document.getElementById('videoFile');
+
+        document.getElementById('submitButton').addEventListener('click', async function(e) {
+            e.preventDefault();
+
+            const fileInput = document.getElementById('videoFile');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('Please select a video file.');
+                return;
+            }
+            const fileName = file.name;
+
+            const chunkSize = 10 * 1024 * 1024; // 10MB per chunk
+            const totalChunks = Math.ceil(file.size / chunkSize);
+
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const progressBar = document.getElementById('progressBar');
+            const progressContainer = document.getElementById('progressContainer');
+            const loadingMessage = document.getElementById('loadingMessage');
+            loadingOverlay.style.display = 'flex';
+            progressContainer.style.display = 'block';
+            loadingMessage.style.display = 'none';
+
+
+            try {
+                // Process Chunk Upload with Progress Bar
+                for (let chunkIndex = 0; chunkIndex < totalChunks; chunkIndex++) {
+                    const chunk = file.slice(chunkIndex * chunkSize, (chunkIndex + 1) * chunkSize);
+
+                    const formData = new FormData();
+                    formData.append('chunk', chunk);
+                    formData.append('chunkIndex', chunkIndex);
+                    formData.append('totalChunks', totalChunks);
+                    formData.append('fileName', fileName);
+
+                    try {
+                        const response = await fetch('{{ route('admin.film.uploadChunk') }}', {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                            body: formData
+                        });
+
+                        // Update Progress Bar
+                        progressBar.value = Math.round(((chunkIndex + 1) / totalChunks) * 100);
+                    } catch (error) {
+                        console.error('Error uploading chunk:', error);
+                        alert('Error uploading file. Please try again.');
+                        loadingOverlay.style.display = 'none'; // Hide the overlay
+                        return;
+                    }
+                }
+
+                // Once all chunks are uploaded, hide progress bar and show loading message
+                progressContainer.style.display = 'none';
+                loadingMessage.style.display = 'block';
+
+                // Submit the Final Form
+                const form = document.getElementById('filmForm');
+                const formData = new FormData(form);
+                formData.append('video_file_name', fileName);
+
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    },
+                    body: formData
+                });
+
+                const result = await response.json();
+                if (result.status === 'success') {
+                    console.log(result.data);
+                    // Hide the overlay and reload the page
+                    loadingOverlay.style.display = 'none';
+                    window.location.reload();
+                } else {
+                    console.error(`Error: ${result.message}`);
+                    alert(`Error: ${result.message}`);
+                    loadingOverlay.style.display = 'none'; // Hide the overlay
+                }
+            } catch (error) {
+                console.error('Error saving form:', error);
+                alert('An unexpected error occurred.');
+                loadingOverlay.style.display = 'none'; // Hide the overlay
+            }
+        });
     </script>
 @endsection

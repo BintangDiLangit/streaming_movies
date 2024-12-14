@@ -9,6 +9,7 @@ use App\Models\Film;
 use App\Models\VideoUpload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class FilmController extends Controller
 {
@@ -18,23 +19,61 @@ class FilmController extends Controller
     {
         $this->client = new \GuzzleHttp\Client();
     }
+
     public function index(Request $request)
     {
-        $datas = Film::query();
+        try {
+            $datas = Film::query();
 
-        if ($request->has('search')) {
-            $datas->where('title', 'like', '%' . request('search') . '%');
+            if ($request->has('search')) {
+                $datas->where('title', 'like', '%' . $request->search . '%');
+            }
+
+            $datas = $datas->with('uploadVideo')->orderBy('created_at', 'desc')->paginate(5)->withQueryString();
+
+            // Optimize: Only query the videos where the status is not `done` or `failed`
+            $pendingUploads = VideoUpload::whereNotIn('status', ['done', 'failed'])->get();
+
+            if ($pendingUploads->isNotEmpty()) {
+                try {
+                    $client = new \GuzzleHttp\Client();
+
+                    foreach ($pendingUploads as $videoUpload) {
+                        $response = $client->request('GET', 'https://video.bunnycdn.com/library/' . env('BUNNY_LIBRARY_ID') . '/videos/' . $videoUpload->video_id, [
+                            'headers' => [
+                                'AccessKey' => env('BUNNY_ACCESS_KEY'),
+                                'accept' => 'application/json',
+                            ],
+                        ]);
+
+                        $videoData = json_decode($response->getBody(), true);
+
+                        // Update the `status` in the database based on BunnyCDN's response
+                        if ($videoData['status'] === 1) { // Video is ready
+                            $videoUpload->update(['status' => 'done']);
+                        } elseif ($videoData['status'] === 2) { // Video is still processing
+                            $videoUpload->update(['status' => 'processing']);
+                        } elseif ($videoData['status'] === 3) { // Video processing failed
+                            $videoUpload->update(['status' => 'failed']);
+                        }
+                    }
+                } catch (\Exception $e) {
+                    // Log any errors during the BunnyCDN API call
+                    Log::error("Error updating video status: " . $e->getMessage());
+                }
+            }
+
+            return view('admin.pages.film.index', compact('datas'));
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+            abort(500);
         }
-
-        $datas = $datas->orderBy('created_at', 'desc')->paginate(5)->withQueryString();
-        return view('admin.pages.film.index', compact('datas'));
     }
 
     public function store(Request $request)
     {
         try {
             $request->validate([
-                'video_file' => 'required|file|mimetypes:video/mp4,video/mpeg,video/quicktime',
                 'title' => 'required',
                 'slug' => 'required',
                 'description' => 'required',
@@ -43,12 +82,16 @@ class FilmController extends Controller
 
             DB::beginTransaction();
 
-            $video = $request->file('video_file');
-            $tempVideoPath = storage_path('app/tmp_videos/' . $video->getClientOriginalName());
-            $video->move(storage_path('app/tmp_videos/'), $video->getClientOriginalName());
+            $fileName = $request->input('video_file_name');
+            Log::info("File Name : " . $fileName);
+            $tempVideoPath = storage_path('app/tmp_videos/' . $fileName);
+            Log::info("Temp File Path : " . $tempVideoPath);
 
+            if (!file_exists($tempVideoPath)) {
+                throw new \Exception("The uploaded video file does not exist: $tempVideoPath");
+            }
 
-            $addVideo = $this->client->request('POST', 'https://video.bunnycdn.com/library/' . env('BUNNY_LIBRARY_ID') . '/videos', [
+            $addVideoResponse = $this->client->request('POST', 'https://video.bunnycdn.com/library/' . env('BUNNY_LIBRARY_ID') . '/videos', [
                 'body' => '{"title":"' . $request->title . '"}',
                 'headers' => [
                     'AccessKey' => env('BUNNY_ACCESS_KEY'),
@@ -57,10 +100,13 @@ class FilmController extends Controller
                 ],
             ]);
 
-            $addVideo = $addVideo->getBody();
-
-            $responseData = json_decode($addVideo, true);
+            $responseData = json_decode($addVideoResponse->getBody(), true);
             $videoId = $responseData['guid'];
+
+            Log::info("======");
+            Log::info($responseData);
+            Log::info($videoId);
+            Log::info("======");
 
             VideoUpload::create([
                 'video_id' => $videoId,
@@ -68,23 +114,37 @@ class FilmController extends Controller
                 'status' => 'processing',
             ]);
 
+            Log::info("==== Video Upload Created ===");
+
             UploadVideoJob::dispatch($tempVideoPath, $videoId);
 
-            Film::create([
+            Log::info("==== Processing Job ===");
+
+
+            $film = Film::create([
                 'title' => $request->title,
                 'slug' => $request->slug,
                 'description' => $request->description,
                 'total_minute' => 0,
                 'path_src_vidio' => "https://iframe.mediadelivery.net/play/" . env('BUNNY_LIBRARY_ID') . "/" . $videoId,
                 'path_thumbnail' => StoreHelper::store($request->file('thumbnail'), 'thumbnails'),
+                'video_id' => $videoId,
             ]);
 
             DB::commit();
 
-            return redirect()->back()->with('success', 'Film created successfully');
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Film created successfully',
+                'data' => $film,
+            ]);
         } catch (\Throwable $th) {
             DB::rollBack();
-            dd($th->getMessage());
+            return response()->json([
+                'status' => 'error',
+                'message' => $th->getMessage(),
+            ], 500);
         }
     }
 
@@ -101,15 +161,12 @@ class FilmController extends Controller
             'slug' => 'required',
             'description' => 'required',
             'total_minute' => 'required',
-            'video_file' => 'nullable|file|mimetypes:video/mp4,video/mpeg,video/quicktime',
             'thumbnail' => 'nullable|file|image|mimes:jpeg,png,jpg|max:20480',
         ]);
 
-        $video = $request->file('video_file');
-        $tempVideoPath = storage_path('app/tmp_videos/' . $video->getClientOriginalName());
-        $video->move(storage_path('app/tmp_videos/'), $video->getClientOriginalName());
+        $videoFilePath = storage_path('app/tmp_videos/' . $request->input('video_file_name'));
 
-        if ($video) {
+        if ($videoFilePath) {
 
             $addVideo = $this->client->request('POST', 'https://video.bunnycdn.com/library/' . env('BUNNY_LIBRARY_ID') . '/videos', [
                 'body' => '{"title":"' . $request->title . '"}',
@@ -127,11 +184,11 @@ class FilmController extends Controller
 
             VideoUpload::create([
                 'video_id' => $videoId,
-                'video_path' => $tempVideoPath,
+                'video_path' => $videoFilePath,
                 'status' => 'processing',
             ]);
 
-            UploadVideoJob::dispatch($tempVideoPath, $videoId);
+            UploadVideoJob::dispatch($videoFilePath, $videoId);
 
             $dataUpdate = [
                 'title' => $request->title,
@@ -172,5 +229,80 @@ class FilmController extends Controller
     {
         $videoUpload = VideoUpload::where('video_id', $videoId)->firstOrFail();
         return response()->json(['status' => $videoUpload->status]);
+    }
+
+    public function uploadChunk(Request $request)
+    {
+        $request->validate([
+            'chunk' => 'required|file',
+            'chunkIndex' => 'required|integer',
+            'totalChunks' => 'required|integer',
+            'fileName' => 'required|string',
+        ]);
+
+        $tempDir = storage_path('app/tmp_videos/chunks_' . $request->fileName);
+        $finalFilePath = storage_path('app/tmp_videos/' . $request->fileName);
+
+        if (!file_exists($tempDir)) {
+            mkdir($tempDir, 0777, true);
+        }
+
+        $chunk = $request->file('chunk');
+        $chunk->move($tempDir, $request->chunkIndex);
+
+        if ($request->chunkIndex + 1 == $request->totalChunks) {
+
+
+            if (is_dir($finalFilePath)) {
+                Log::info("$finalFilePath is a directory.");
+            } elseif (is_file($finalFilePath)) {
+                Log::info("$finalFilePath is a file.");
+                unlink($finalFilePath);
+            } else {
+                Log::info("$finalFilePath does not exist.");
+            }
+
+            $outFile = fopen($finalFilePath, 'wb');
+            for ($i = 0; $i < $request->totalChunks; $i++) {
+                $chunkFile = $tempDir . '/' . $i;
+
+                if (!file_exists($chunkFile)) {
+                    throw new \Exception("Chunk $i not found at $chunkFile");
+                }
+
+                $inFile = fopen($chunkFile, 'rb');
+                while ($buffer = fread($inFile, 8192)) {
+                    fwrite($outFile, $buffer);
+                }
+                fclose($inFile);
+                unlink($chunkFile);
+            }
+
+            fclose($outFile);
+            $this->deleteDirectory($tempDir);
+
+            return response()->json(['message' => 'File uploaded successfully', 'path' => $finalFilePath]);
+        }
+
+        return response()->json(['message' => 'Chunk uploaded successfully']);
+    }
+
+    function deleteDirectory($dir)
+    {
+        if (!is_dir($dir)) {
+            return false;
+        }
+
+        $files = array_diff(scandir($dir), ['.', '..']);
+        foreach ($files as $file) {
+            $filePath = $dir . DIRECTORY_SEPARATOR . $file;
+            if (is_dir($filePath)) {
+                $this->deleteDirectory($filePath);
+            } else {
+                unlink($filePath);
+            }
+        }
+
+        return rmdir($dir);
     }
 }

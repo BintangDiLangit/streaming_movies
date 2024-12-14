@@ -44,6 +44,7 @@ Route::prefix('/admin')->name('admin.')->middleware(['auth', 'roles:admin'])->gr
         Route::get('/{id}/edit', [FilmController::class, 'edit'])->name('edit');
         Route::put('/{id}', [FilmController::class, 'update'])->name('update');
         Route::delete('/{id}', [FilmController::class, 'destroy'])->name('destroy');
+        Route::post('/upload-chunk', [FilmController::class, 'uploadChunk'])->name('uploadChunk');
     });
 
     /** Ads */

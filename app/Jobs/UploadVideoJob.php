@@ -31,17 +31,39 @@ class UploadVideoJob implements ShouldQueue
      */
     public function handle()
     {
-        $client = new Client();
-
+        $client = new Client([
+            'timeout' => 300,
+            'connect_timeout' => 30,
+        ]);
         try {
+
+            if (!file_exists($this->videoPath)) {
+                Log::error("File does not exist at path: {$this->videoPath}");
+                \App\Models\VideoUpload::where('video_id', $this->videoId)->update(['status' => 'error']);
+                return;
+            }
+
+            if (!is_readable($this->videoPath)) {
+                Log::error("File is not readable at path: {$this->videoPath}");
+                \App\Models\VideoUpload::where('video_id', $this->videoId)->update(['status' => 'error']);
+                return;
+            }
+
+            Log::info("Video Path: {$this->videoPath}");
+
             // Upload video to BunnyCDN
             $response = $client->request('PUT', "https://video.bunnycdn.com/library/" . env('BUNNY_LIBRARY_ID') . "/videos/{$this->videoId}", [
-                'body' => file_get_contents($this->videoPath),
+                'body' => fopen($this->videoPath, 'rb'),
                 'headers' => [
                     'AccessKey' => env('BUNNY_ACCESS_KEY'),
                     'Content-Type' => 'application/octet-stream',
                 ],
             ]);
+
+            Log::info("==== Response Store to Bunny ====");
+            Log::info("BunnyCDN Response: " . $response->getBody()->getContents());
+            Log::info("BunnyCDN Status Code: " . $response->getStatusCode());
+            Log::info("=================================");
 
             if ($response->getStatusCode() === 200) {
                 Log::info("Video uploaded successfully: {$this->videoId}");
