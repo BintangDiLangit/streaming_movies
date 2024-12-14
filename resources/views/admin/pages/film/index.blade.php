@@ -203,19 +203,6 @@
             });
         });
 
-        function checkStatus(videoId) {
-            setInterval(async () => {
-                const response = await fetch(`/video-status/${videoId}`);
-                const data = await response.json();
-                console.log(`Status: ${data.status}`);
-
-                if (data.status === 'done') {
-                    clearInterval(this);
-                    alert('Upload selesai!');
-                }
-            }, 5000);
-        }
-
         const fileInput = document.getElementById('videoFile');
 
         document.getElementById('submitButton').addEventListener('click', async function(e) {

@@ -164,11 +164,12 @@ class FilmController extends Controller
             'thumbnail' => 'nullable|file|image|mimes:jpeg,png,jpg|max:20480',
         ]);
 
-        $videoFilePath = storage_path('app/tmp_videos/' . $request->input('video_file_name'));
+        $fileName = $request->input('video_file_name');
+        $videoFilePath = storage_path('app/tmp_videos/' . $fileName);
 
         if ($videoFilePath) {
 
-            $addVideo = $this->client->request('POST', 'https://video.bunnycdn.com/library/' . env('BUNNY_LIBRARY_ID') . '/videos', [
+            $addVideoResponse = $this->client->request('POST', 'https://video.bunnycdn.com/library/' . env('BUNNY_LIBRARY_ID') . '/videos', [
                 'body' => '{"title":"' . $request->title . '"}',
                 'headers' => [
                     'AccessKey' => env('BUNNY_ACCESS_KEY'),
@@ -177,9 +178,7 @@ class FilmController extends Controller
                 ],
             ]);
 
-            $addVideo = $addVideo->getBody();
-
-            $responseData = json_decode($addVideo, true);
+            $responseData = json_decode($addVideoResponse->getBody(), true);
             $videoId = $responseData['guid'];
 
             VideoUpload::create([
@@ -196,6 +195,7 @@ class FilmController extends Controller
                 'description' => $request->description,
                 'total_minute' => $request->total_minute,
                 'path_src_vidio' => "https://iframe.mediadelivery.net/play/" . env('BUNNY_LIBRARY_ID') . "/" . $videoId,
+                'video_id' => $videoId,
             ];
         } else {
             $dataUpdate = [
