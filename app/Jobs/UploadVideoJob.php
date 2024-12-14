@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -17,9 +18,6 @@ class UploadVideoJob implements ShouldQueue
     protected $videoPath;
     protected $videoId;
 
-    /**
-     * Create a new job instance.
-     */
     public function __construct($videoPath, $videoId)
     {
         $this->videoPath = $videoPath;
@@ -33,16 +31,9 @@ class UploadVideoJob implements ShouldQueue
     {
         Log::info("Starting video upload for video ID: {$this->videoId}");
 
-        $timeout = $this->attempts() === 1 ? 10 : 0; // First attempt: 10 seconds, Subsequent attempts: unlimited
-        $connectTimeout = $this->attempts() === 1 ? 5 : 30;
-
-        Log::info("=== Timeout ===");
-        Log::info($timeout);
-        Log::info($connectTimeout);
-
         $client = new Client([
-            'timeout' => $timeout > 0 ? $timeout : null,
-            'connect_timeout' => $connectTimeout,
+            'timeout' => '3600',
+            'connect_timeout' => 30,
         ]);
 
         try {
