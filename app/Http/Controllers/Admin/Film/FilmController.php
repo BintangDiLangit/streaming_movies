@@ -32,38 +32,38 @@ class FilmController extends Controller
             $datas = $datas->with('uploadVideo')->orderBy('created_at', 'desc')->paginate(5)->withQueryString();
 
             // Optimize: Only query the videos where the status is not `done` or `failed`
-            $pendingUploads = VideoUpload::whereNotIn('status', ['done', 'failed'])->get();
+            // $pendingUploads = VideoUpload::whereNotIn('status', ['done', 'failed'])->get();
 
-            if ($pendingUploads->isNotEmpty()) {
-                try {
-                    $client = new \GuzzleHttp\Client();
+            // if ($pendingUploads->isNotEmpty()) {
+            //     try {
+            //         $client = new \GuzzleHttp\Client();
 
-                    foreach ($pendingUploads as $videoUpload) {
-                        $response = $client->request('GET', 'https://video.bunnycdn.com/library/' . env('BUNNY_LIBRARY_ID') . '/videos/' . $videoUpload->video_id, [
-                            'headers' => [
-                                'AccessKey' => env('BUNNY_ACCESS_KEY'),
-                                'accept' => 'application/json',
-                            ],
-                        ]);
+            //         foreach ($pendingUploads as $videoUpload) {
+            //             $response = $client->request('GET', 'https://video.bunnycdn.com/library/' . env('BUNNY_LIBRARY_ID') . '/videos/' . $videoUpload->video_id, [
+            //                 'headers' => [
+            //                     'AccessKey' => env('BUNNY_ACCESS_KEY'),
+            //                     'accept' => 'application/json',
+            //                 ],
+            //             ]);
 
-                        $videoData = json_decode($response->getBody(), true);
+            //             $videoData = json_decode($response->getBody(), true);
 
-                        Log::info("Video Data" . $videoData['status']);
+            //             Log::info("Video Data" . $videoData['status']);
 
-                        // Update the `status` in the database based on BunnyCDN's response
-                        if ($videoData['status'] === 1) { // Video is ready
-                            $videoUpload->update(['status' => 'done']);
-                        } elseif ($videoData['status'] === 2) { // Video is still processing
-                            $videoUpload->update(['status' => 'processing']);
-                        } elseif ($videoData['status'] === 3) { // Video processing failed
-                            $videoUpload->update(['status' => 'failed']);
-                        }
-                    }
-                } catch (\Exception $e) {
-                    // Log any errors during the BunnyCDN API call
-                    Log::error("Error updating video status: " . $e->getMessage());
-                }
-            }
+            //             // Update the `status` in the database based on BunnyCDN's response
+            //             if ($videoData['status'] === 1) { // Video is ready
+            //                 $videoUpload->update(['status' => 'done']);
+            //             } elseif ($videoData['status'] === 2) { // Video is still processing
+            //                 $videoUpload->update(['status' => 'processing']);
+            //             } elseif ($videoData['status'] === 3) { // Video processing failed
+            //                 $videoUpload->update(['status' => 'failed']);
+            //             }
+            //         }
+            //     } catch (\Exception $e) {
+            //         // Log any errors during the BunnyCDN API call
+            //         Log::error("Error updating video status: " . $e->getMessage());
+            //     }
+            // }
 
             return view('admin.pages.film.index', compact('datas'));
         } catch (\Throwable $th) {
@@ -80,6 +80,7 @@ class FilmController extends Controller
                 'slug' => 'required',
                 'description' => 'required',
                 'thumbnail' => 'required|file|image|mimes:jpeg,png,jpg|max:20480',
+                'path_src_vidio' => 'url|required'
             ]);
 
             DB::beginTransaction();
@@ -93,48 +94,47 @@ class FilmController extends Controller
                 throw new \Exception("The uploaded video file does not exist: $tempVideoPath");
             }
 
-            $addVideoResponse = $this->client->request('POST', 'https://video.bunnycdn.com/library/' . env('BUNNY_LIBRARY_ID') . '/videos', [
-                'body' => '{"title":"' . $request->title . '"}',
-                'headers' => [
-                    'AccessKey' => env('BUNNY_ACCESS_KEY'),
-                    'accept' => 'application/json',
-                    'content-type' => 'application/json',
-                ],
-            ]);
+            // $addVideoResponse = $this->client->request('POST', 'https://video.bunnycdn.com/library/' . env('BUNNY_LIBRARY_ID') . '/videos', [
+            //     'body' => '{"title":"' . $request->title . '"}',
+            //     'headers' => [
+            //         'AccessKey' => env('BUNNY_ACCESS_KEY'),
+            //         'accept' => 'application/json',
+            //         'content-type' => 'application/json',
+            //     ],
+            // ]);
 
-            $responseData = json_decode($addVideoResponse->getBody(), true);
-            $videoId = $responseData['guid'];
+            // $responseData = json_decode($addVideoResponse->getBody(), true);
+            // $videoId = $responseData['guid'];
 
-            Log::info("======");
-            Log::info($responseData);
-            Log::info($videoId);
-            Log::info("======");
+            // Log::info("======");
+            // Log::info($responseData);
+            // Log::info($videoId);
+            // Log::info("======");
 
             $film = Film::create([
                 'title' => $request->title,
                 'slug' => $request->slug,
                 'description' => $request->description,
                 'total_minute' => 0,
-                'path_src_vidio' => "https://iframe.mediadelivery.net/play/" . env('BUNNY_LIBRARY_ID') . "/" . $videoId,
+                'path_src_vidio' => $request->path_src_vidio,
                 'path_thumbnail' => StoreHelper::store($request->file('thumbnail'), 'thumbnails'),
-                'video_id' => $videoId,
+                // 'video_id' => $videoId,
             ]);
 
-            VideoUpload::create([
-                'video_id' => $videoId,
-                'video_path' => $tempVideoPath,
-                'status' => 'processing',
-            ]);
+            // VideoUpload::create([
+            //     'video_id' => $videoId,
+            //     'video_path' => $tempVideoPath,
+            //     'status' => 'processing',
+            // ]);
 
             DB::commit();
 
 
-            Log::info("==== Video Upload Created ===");
+            // Log::info("==== Video Upload Created ===");
 
-            UploadVideoJob::dispatch($tempVideoPath, $videoId)->onQueue('uploads');
+            // UploadVideoJob::dispatch($tempVideoPath, $videoId)->onQueue('uploads');
 
-            Log::info("==== Processing Job ===");
-
+            // Log::info("==== Processing Job ===");
 
             return response()->json([
                 'status' => 'success',
@@ -167,6 +167,7 @@ class FilmController extends Controller
                 'description' => 'required',
                 'total_minute' => 'required',
                 'thumbnail' => 'nullable|file|image|mimes:jpeg,png,jpg|max:20480',
+                'path_src_vidio' => 'url|required'
             ]);
 
             $dataUpdate = [
@@ -174,43 +175,11 @@ class FilmController extends Controller
                 'slug' => $request->slug,
                 'description' => $request->description,
                 'total_minute' => $request->total_minute,
+                'path_src_vidio' => $request->path_src_vidio,
             ];
 
             if ($request->hasFile('thumbnail')) {
                 $dataUpdate['path_thumbnail'] = StoreHelper::store($request->file('thumbnail'), 'thumbnails');
-            }
-
-            $fileName = $request->input('video_file_name');
-            $videoFilePath = storage_path('app/tmp_videos/' . $fileName);
-
-
-            if ($videoFilePath && file_exists($videoFilePath)) {
-                // Step 1: Create a new video entry in BunnyCDN
-                $addVideoResponse = $this->client->request('POST', 'https://video.bunnycdn.com/library/' . env('BUNNY_LIBRARY_ID') . '/videos', [
-                    'body' => '{"title":"' . $request->title . '"}',
-                    'headers' => [
-                        'AccessKey' => env('BUNNY_ACCESS_KEY'),
-                        'accept' => 'application/json',
-                        'content-type' => 'application/json',
-                    ],
-                ]);
-
-                $responseData = json_decode($addVideoResponse->getBody(), true);
-                $videoId = $responseData['guid'];
-
-                // Step 2: Create a VideoUpload entry
-                VideoUpload::create([
-                    'video_id' => $videoId,
-                    'video_path' => $videoFilePath,
-                    'status' => 'processing',
-                ]);
-
-                // Step 3: Dispatch the job to upload the video in the background
-                UploadVideoJob::dispatch($videoFilePath, $videoId)->onQueue('uploads');
-
-                // Update the film with placeholders for the video
-                $dataUpdate['path_src_vidio'] = "https://iframe.mediadelivery.net/play/" . env('BUNNY_LIBRARY_ID') . "/" . $videoId;
-                $dataUpdate['video_id'] = $videoId;
             }
 
             $film = Film::findOrFail($id);

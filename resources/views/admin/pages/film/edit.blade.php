@@ -55,12 +55,12 @@
                                 <div class="mb-3">
                                     <label for="">URL video (embed link)</label>
                                     <input type="text" class="form-control" placeholder="URL video (embed link)"
-                                        name="path_src_vidio" disabled value="{{ $film->path_src_vidio }}" required>
+                                        name="path_src_vidio" value="{{ $film->path_src_vidio }}" required>
                                     @error('path_src_vidio')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="mb-3">
+                                {{-- <div class="mb-3">
                                     <label for="">File Video</label>
                                     <input type="file" id="videoFile" accept="video/mp4" class="form-control"
                                         placeholder="Video file, type embeded" aria-label="Path Source Vidio"
@@ -68,7 +68,7 @@
                                     @error('video_file')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
-                                </div>
+                                </div> --}}
                                 <div class="mb-3">
                                     <label for="">Description</label>
                                     <textarea class="form-control" placeholder="Description..." name="description" style="height: 100px">{{ $film->description }}</textarea>
@@ -164,65 +164,18 @@
         document.getElementById('submitButton').addEventListener('click', async function(e) {
             e.preventDefault();
 
-            const fileInput = document.getElementById('videoFile');
-            const file = fileInput.files[0];
-
-            if (!file) {
-                alert('Please select a video file.');
-                return;
-            }
-            const fileName = file.name;
-
-            const chunkSize = 10 * 1024 * 1024; // 10MB per chunk
-            const totalChunks = Math.ceil(file.size / chunkSize);
-
             const loadingOverlay = document.getElementById('loadingOverlay');
-            const progressBar = document.getElementById('progressBar');
-            const progressContainer = document.getElementById('progressContainer');
             const loadingMessage = document.getElementById('loadingMessage');
             loadingOverlay.style.display = 'flex';
-            progressContainer.style.display = 'block';
             loadingMessage.style.display = 'none';
 
 
             try {
-                // Process Chunk Upload with Progress Bar
-                for (let chunkIndex = 0; chunkIndex < totalChunks; chunkIndex++) {
-                    const chunk = file.slice(chunkIndex * chunkSize, (chunkIndex + 1) * chunkSize);
-
-                    const formData = new FormData();
-                    formData.append('chunk', chunk);
-                    formData.append('chunkIndex', chunkIndex);
-                    formData.append('totalChunks', totalChunks);
-                    formData.append('fileName', fileName);
-
-                    try {
-                        const response = await fetch('{{ route('admin.film.uploadChunk') }}', {
-                            method: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                            },
-                            body: formData
-                        });
-
-                        // Update Progress Bar
-                        progressBar.value = Math.round(((chunkIndex + 1) / totalChunks) * 100);
-                    } catch (error) {
-                        console.error('Error uploading chunk:', error);
-                        alert('Error uploading file. Please try again.');
-                        loadingOverlay.style.display = 'none'; // Hide the overlay
-                        return;
-                    }
-                }
-
-                // Once all chunks are uploaded, hide progress bar and show loading message
-                progressContainer.style.display = 'none';
                 loadingMessage.style.display = 'block';
 
                 // Submit the Final Form
                 const form = document.getElementById('filmForm');
                 const formData = new FormData(form);
-                formData.append('video_file_name', fileName);
 
                 const response = await fetch(form.action, {
                     method: 'POST',
