@@ -7,16 +7,28 @@ use App\Models\Ads;
 trait AdsManager
 {
     // Function untuk refresh page ads
-    public function everyRefreshPage(string $status_refresh_page, string $url_image_refresh_page = '/assets/images/ads/web.png', string $url_redirect_refresh_page = 'https://s.shopee.co.id/5fX5f9LFcb?share_channel_code=2')
-    {
+    public function everyRefreshPage(
+        string $status_refresh_page,
+        string $status_refresh_page_2,
+        string $url_image_refresh_page = '/assets/images/ads/web.png',
+        string $url_redirect_refresh_page = 'https://s.shopee.co.id/5fX5f9LFcb?share_channel_code=2',
+        string $url_image_refresh_page_2 = '/assets/images/ads/web.png',
+        string $url_redirect_refresh_page_2 = 'https://s.shopee.co.id/5fX5f9LFcb?share_channel_code=2'
+    ) {
         session([
             'refresh_page_ads' => [
-                'status' => $status_refresh_page,
-                'image_url' => $url_image_refresh_page,
-                'redirect_url' => $url_redirect_refresh_page,
+                'status_1' => $status_refresh_page,
+                'image_url_1' => $url_image_refresh_page,
+                'redirect_url_1' => $url_redirect_refresh_page,
+
+                'status_2' => $status_refresh_page_2,
+                'image_url_2' => $url_image_refresh_page_2,
+                'redirect_url_2' => $url_redirect_refresh_page_2,
                 'click_count' => 0, // Untuk melacak jumlah klik pada iklan (reset setiap refresh)
             ]
         ]);
+
+        // dd(session('refresh_page_ads'));
     }
 
     // Function untuk setiap menit menampilkan ads
@@ -44,15 +56,25 @@ trait AdsManager
         ]);
     }
 
-    public function setAds() {
+    public function setAds()
+    {
         $ads = Ads::first();
 
-        if ($ads){
-            $this->everyRefreshPage($ads->refresh_page_ads_status, $ads->refresh_page_ads_image_url, $ads->refresh_page_ads_redirect_url);
+        if ($ads) {
+            $this->everyRefreshPage(
+                $ads->refresh_page_ads_status,
+                $ads->refresh_page_ads_status_2,
+
+                $ads->refresh_page_ads_image_url,
+                $ads->refresh_page_ads_redirect_url,
+
+                $ads->refresh_page_ads_image_url_2,
+                $ads->refresh_page_ads_redirect_url_2
+            );
             $this->everyMinute($ads->minute_ads_status, $ads->minute_ads_redirect_url, $ads->minute_ads_interval);
             $this->staticAds($ads->static_ads_status, $ads->static_ads_image_url, $ads->static_ads_redirect_url);
-        }else {
-            $this->everyRefreshPage('off');
+        } else {
+            $this->everyRefreshPage('off', 'off');
             $this->everyMinute('off');
             $this->staticAds('off');
         }
