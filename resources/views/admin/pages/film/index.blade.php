@@ -74,13 +74,13 @@
                                                 Edit
                                             </a>
                                             <a href="javascript:;"
-                                                class="text-secondary font-weight-bold text-xs delete-alert"
+                                                class="text-secondary font-weight-bold text-xs delete-alert me-5"
                                                 data-bs-url="{{ route('admin.film.destroy', $data->id) }}"
                                                 data-bs-method="DELETE">
                                                 <i class="fa fa-trash me-sm-1"></i>
                                                 <span class="d-sm-inline d-none">Delete</span>
                                             </a>
-                                            <a class="text-secondary font-weight-bold text-xs me-5 copy-url" href="#"
+                                            <a class="text-secondary font-weight-bold text-xs copy-url" href="#"
                                                 data-url="{{ env('APP_URL') . '/detail/' . $data->slug }}"
                                                 onclick="copyToClipboard(this)">
                                                 Copy URL
