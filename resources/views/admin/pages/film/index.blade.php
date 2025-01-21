@@ -68,23 +68,22 @@
                                             </span>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <a class="text-secondary font-weight-bold text-xs me-5 copy-url" href="#"
-                                                data-url="{{ env('APP_URL') . '/detail/' . $data->slug }}"
-                                                onclick="copyToClipboard(this)">
-                                                Copy URL
-                                            </a>
                                             <a href="{{ route('admin.film.edit', $data->id) }}"
                                                 class="text-secondary font-weight-bold text-xs me-5" data-toggle="tooltip"
                                                 data-original-title="Edit user">
                                                 Edit
                                             </a>
-
                                             <a href="javascript:;"
                                                 class="text-secondary font-weight-bold text-xs delete-alert"
                                                 data-bs-url="{{ route('admin.film.destroy', $data->id) }}"
                                                 data-bs-method="DELETE">
                                                 <i class="fa fa-trash me-sm-1"></i>
                                                 <span class="d-sm-inline d-none">Delete</span>
+                                            </a>
+                                            <a class="text-secondary font-weight-bold text-xs me-5 copy-url" href="#"
+                                                data-url="{{ env('APP_URL') . '/detail/' . $data->slug }}"
+                                                onclick="copyToClipboard(this)">
+                                                Copy URL
                                             </a>
                                         </td>
                                     </tr>
@@ -321,7 +320,7 @@
                 toast: true,
                 position: 'top-end',
                 icon: 'success',
-                title: 'URL berhasil disalin!',
+                title: 'URL Copied!',
                 showConfirmButton: false,
                 timer: 2000,
                 timerProgressBar: true,
