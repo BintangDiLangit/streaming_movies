@@ -68,6 +68,11 @@
                                             </span>
                                         </td>
                                         <td class="align-middle text-center">
+                                            <a class="text-secondary font-weight-bold text-xs me-5 copy-url" href="#"
+                                                data-url="{{ env('APP_URL') . '/detail/' . $data->slug }}"
+                                                onclick="copyToClipboard(this)">
+                                                Copy URL
+                                            </a>
                                             <a href="{{ route('admin.film.edit', $data->id) }}"
                                                 class="text-secondary font-weight-bold text-xs me-5" data-toggle="tooltip"
                                                 data-original-title="Edit user">
@@ -191,7 +196,7 @@
     </style>
 
     @include('admin.components.modal-confirmation-delete')
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const titleInput = document.getElementById('title');
@@ -298,5 +303,36 @@
                 loadingOverlay.style.display = 'none'; // Hide the overlay
             }
         });
+
+        function copyToClipboard(element) {
+            const url = element.getAttribute('data-url');
+
+            const tempInput = document.createElement('input');
+            tempInput.value = url;
+            document.body.appendChild(tempInput);
+
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+
+            document.body.removeChild(tempInput);
+
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'success',
+                title: 'URL berhasil disalin!',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                customClass: {
+                    popup: 'colored-toast'
+                },
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer);
+                    toast.addEventListener('mouseleave', Swal.resumeTimer);
+                }
+            });
+        }
     </script>
 @endsection
